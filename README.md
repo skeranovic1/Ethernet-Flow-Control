@@ -1,12 +1,14 @@
 # Ethernet Flow Control
 
-Ethernet flow control je mehanizam definisan standardom IEEE 802.3x koji omogućava privremeno zaustavljanje prijenosa podataka između Ethernet uređaja u cilju sprječavanja gubitka podataka usljed zagušenja. Mehanizam se zasniva na razmjeni specijalnih kontrolnih okvira poznatih kao PAUSE okviri. Vrijednost ovog polja predstavlja broj vremenskih kvanti tokom kojih se prenos treba pauzirati.
+Ethernet flow control je mehanizam definisan standardom IEEE 802.3x koji omogućava privremeno zaustavljanje prijenosa podataka između Ethernet uređaja u cilju sprječavanja gubitka podataka usljed zagušenja. Mehanizam se zasniva na razmjeni specijalnih kontrolnih okvira poznatih kao Ethernet PAUSE okviri, kojim jedna strana može zatražiti pauzu prenosa od druge strane.
 
-### Struktura Ethernet PAUSE okvira
+## Ethernet PAUSE okvir
 
-Ethernet PAUSE okvir je identifikovan pomoću Opcode i Pause time polja. Struktura okvira je data ispod:
+Ethernet PAUSE okvir predstavlja MAC Control Ethernet okvir identifikovan EtherType vrijednošću 0x8808. Kada Ethernet okvir ima ovu EtherType vrijednost, njegov payload sadrži MAC kontrolne informacije, a ne korisničke podatke.
 
-![Struktura PAUSE okvira](Images/Struktura_paketa.jpg)
+Unutar MAC Control nalazi se polje MAC Control Opcode, koje određuje konkretnu kontrolnu funkciju. Opcode vrijednost 0x0001 označava PAUSE funkciju. Polje `pause_time` definiše trajanje pauze u jedinicama od 512 bitskih intervala.
+
+![Struktura PAUSE okvira](Images/frame.jpg)
 
 U okviru ovog projekta bit će implementiran VHDL modul `ethernet_flow_control` koji podržava:
 - generisanje Ethernet PAUSE okvira na osnovu upravljačkih signala `pause` i `time`
@@ -21,49 +23,18 @@ Komunikacija sa okruženjem ostvarena je korištenjem Avalon-ST interfejsa sa re
 
 Modul `ethernet_flow_control` implementira Ethernet flow control mehanizam baziran na IEEE 802.3x PAUSE okviru. Modul prima upravljačke signale `pause` i `time`, kao i ulazni Avalon-ST interfejs (`in_data`, `in_valid`, `in_sop`, `in_eop`). Na izlazu generiše Avalon-ST interfejs (`out_data`,  `out_valid`, `out_sop`, `out_eop`) i statusni signal `is_paused`.
 
-Signal `in_ready` kontroliše prijem ulaznih podataka, dok signal `out_ready` omogućava slanje podataka ka prijemniku.
+Modul koristi Avalon-ST interfejs sa ready/valid rukovanjem. Strana koja šalje podatke postavlja signal `valid` zajedno sa podacima i oznakama početka i kraja okvira (`sop`, `eop`). Strana koja prima podatke signalom `ready` označava svoju spremnost za prijem podataka. Prenos podataka se ostvaruje samo kada su signali `valid` i `ready` istovremeno aktivni.
 
-### Scenario 1: Prijem PAUSE okvira sa pause-time = 0
+## Opis komunikacije
 
-![Scenario 1](Images/scenarij_1.jpg)
+Sekvencijalni dijagram prikazuje razmjenu Ethernet PAUSE okvira između dvije strane: Tx strane, koja inicira kontrolu toka, i Rx strane, koja reaguje na primljeni PAUSE okvir.
 
-U ovom scenariju modul prima Ethernet PAUSE okvir definisan sa:
-- `type = 0x8808`
-- `opcode = 0x0001`
-- `pause_time = 0`
+![Opis rada modula](Images/scenarij.jpg)
 
-Tok događaja:
-- `in_valid = 1` i `in_sop = 1` označavaju početak PAUSE okvira
-- PAUSE okvir je uspješno detektovan i parsiran
-- `in_eop = 1` označava kraj okvira
+Tx strana formira i šalje Ethernet PAUSE okvir prema Rx strani. Okvir je identifikovan destinacijskom MAC adresom rezervisanom za MAC Control Okvire, EtherType vrijednošću 0x8808 i MAC Control Opcode vrijednošću 0x0001, čime se okvir prepoznaje kao PAUSE okvir. Polje `pause_time` u okviru određuje trajanje pauze prenosa.
 
-Pošto je `pause_time = 0` pauza se ne aktivira i modul nastavlja normalan rad.
+Nakon prijema PAUSE okvira, Rx strana dekodira MAC Control polja okvira i na osnovu vrijednosti opcode i `pause_time`, aktivira stanje pauze prenosa podataka tokom definisanog vremenskog intervala.
 
-Rezultat:
-- `is_paused = 0`
-- `out_valid = 1`
-- Prenos podataka se odvija bez prekida
-
-### Scenario 2: Prijem PAUSE okvira sa pause-time > 0
-
-![Scenario 2](Images/scenarij_2.jpg)
-
-U ovom scenariju modul prima Ethernet PAUSE okvir sa vrijednošću `pause_time = 0x0002`.
-
-Tok događaja:
-- Detekcija PAUSE okvira (`type = 0x8808`, `opcode = 0x0001`)
-- Izdvajanje vrijednosti `pause_time`
-- Aktivacija mehanizma pauze
-
-Tokom trajanja pauze:
-- `is_paused = 1`
-- `out_valid = 0`
-- Slanje podataka je privremeno obustavljeno
-
-Nakon isteka pauze:
-- `is_paused` se vraća na `0`
-- `out_valid = 1`
-- Normalan prenos podataka se nastavlja
-
+Po isteku vremena definisanog poljem `pause_time`, Rx strana automatski napušta stanje pauze i nastavlja normalan prenos podataka.
 
 
