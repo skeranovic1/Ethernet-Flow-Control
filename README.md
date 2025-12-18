@@ -60,3 +60,8 @@ Po isteku vremena definisanog poljem `pause_time`, Rx strana automatski napušta
 
 WaveDrom dijagram prikazuje vremenski tok signala modula `ethernet_flow_control` tokom prijema Ethernet PAUSE okvira i trajanja pauze prenosa.
 
+## Literatura
+
+- [text](https://en.wikipedia.org/wiki/Ethernet_flow_control)
+- [text](https://www.intel.com/content/www/us/en/docs/programmable/683091/20-1/introduction-to-the-interface-specifications.html)
+- Predavanja iz predmeta *Arhitekture paketskih čvorišta*, V. prof. dr Enia Kaljića, mr. dipl. ing.: [Courseware](https://c2.etf.unsa.ba/course/view.php?id=158)
