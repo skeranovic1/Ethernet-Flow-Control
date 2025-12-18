@@ -25,6 +25,25 @@ Modul `ethernet_flow_control` implementira Ethernet flow control mehanizam bazir
 
 Modul koristi Avalon-ST interfejs sa ready/valid rukovanjem. Strana koja šalje podatke postavlja signal `valid` zajedno sa podacima i oznakama početka i kraja okvira (`sop`, `eop`). Strana koja prima podatke signalom `ready` označava svoju spremnost za prijem podataka. Prenos podataka se ostvaruje samo kada su signali `valid` i `ready` istovremeno aktivni.
 
+### Opis signala modula
+
+- `in_data` – podatak koji se prenosi u trenutnom ciklusu transfera Ethernet okvira na ulazu 
+- `in_valid` – signal koji indicira da su podaci prisutni na signalu `in_data` u trenutnom ciklusu transfera validni
+- `in_sop` – signal koji indicira početak prenosa Ethernet okvira na ulazu  
+- `in_eop` – signal koji indicira kraj prenosa Ethernet okvira na ulazu  
+- `in_ready` – signal koji indicira da je modul spreman za prijem ulaznih podataka u narednom ciklusu transfera 
+
+- `out_data` – podatak koji se prenosi u trenutnom ciklusu transfera Ethernet okvira na izlazu 
+- `out_valid` – signal koji indicira da su podaci prisutni na signalu `out_data` u trenutnom ciklusu transfera validni 
+- `out_sop` – signal koji indicira početak prenosa Ethernet okvira na izlazu 
+- `out_eop` – signal koji indicira kraj prenosa Ethernet okvira na izlazu  
+- `out_ready` – signal koji indicira da je odredište spremno za prijem izlaznih podataka u narednom ciklusu transfera
+
+- `pause` – upravljački signal za generisanje Ethernet PAUSE okvira  
+- `time` – vrijednost koja se koristi kao polje `pause_time` u Ethernet PAUSE okviru  
+- `is_paused` – statusni signal koji indicira da je prenos podataka trenutno pauziran usljed primljenog PAUSE okvira
+
+
 ## Opis komunikacije
 
 Sekvencijalni dijagram prikazuje razmjenu Ethernet PAUSE okvira između dvije strane: Tx strane, koja inicira kontrolu toka, i Rx strane, koja reaguje na primljeni PAUSE okvir.
