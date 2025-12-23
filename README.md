@@ -48,7 +48,7 @@ Modul koristi Avalon-ST interfejs sa ready/valid rukovanjem. Strana koja šalje 
 
 Sekvencijalni dijagram prikazuje razmjenu Ethernet PAUSE okvira između dvije strane: Tx strane, koja inicira kontrolu toka, i Rx strane, koja reaguje na primljeni PAUSE okvir.
 
-![Opis rada modula](Images/scenarij.jpg)
+![Opis rada modula](Images/ulpm.jpg)
 
 Tx strana formira i šalje Ethernet PAUSE okvir prema Rx strani. Okvir je identifikovan destinacijskom MAC adresom rezervisanom za MAC Control Okvire, EtherType vrijednošću 0x8808 i MAC Control Opcode vrijednošću 0x0001, čime se okvir prepoznaje kao PAUSE okvir. Polje `pause_time` u okviru određuje trajanje pauze prenosa.
 
