@@ -56,10 +56,13 @@ Nakon prijema PAUSE okvira, Rx strana dekodira MAC Control polja okvira i na osn
 
 Po isteku vremena definisanog poljem `pause_time`, Rx strana automatski napušta stanje pauze i nastavlja normalan prenos podataka.
 
-## WaveDrom dijagram
+## Waveform dijagram
 
 WaveDrom dijagram prikazuje vremenski tok signala modula `ethernet_flow_control` tokom prijema Ethernet PAUSE okvira i trajanja pauze prenosa.
 
+![WaveDrom dijagram](Images/wavedrom_projekat.jpg)
+
+Dok signal `is_paused` nije aktivan, podaci se prenose kada su signali `in_valid` i `in_ready` aktivni. Prijem `PAUSE` zahtjeva aktivira signal `is_paused`, čime se obustavlja prijenos podataka: `in_ready` i `out_valid` se deaktiviraju, a `out_data` se postavlja na neutralnu vrijednost. Nakon isteka trajanja pauze definisanog signalom `time`, komunikacija se natavlja normalno.
 ## Literatura
 
 - https://en.wikipedia.org/wiki/Ethernet_flow_control
