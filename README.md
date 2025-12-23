@@ -60,9 +60,18 @@ Po isteku vremena definisanog poljem `pause_time`, Rx strana automatski napušta
 
 WaveDrom dijagram prikazuje vremenski tok signala modula `ethernet_flow_control` tokom prijema Ethernet PAUSE okvira i trajanja pauze prenosa.
 
-![WaveDrom dijagram](Images/wavedrom_projekat.jpg)
+![WaveDrom dijagram](WaveDrom/wavedrom_projekat.jpg)
 
-Dok signal `is_paused` nije aktivan, podaci se prenose kada su signali `in_valid` i `in_ready` aktivni. Prijem `PAUSE` zahtjeva aktivira signal `is_paused`, čime se obustavlja prijenos podataka: `in_ready` i `out_valid` se deaktiviraju, a `out_data` se postavlja na neutralnu vrijednost. Nakon isteka trajanja pauze definisanog signalom `time`, komunikacija se natavlja normalno.
+Dok signal `is_paused` nije aktivan, podaci se prenose kada su signali `in_valid` i `in_ready` aktivni. Prijem `PAUSE` zahtjeva aktivira signal `is_paused`, čime se obustavlja prijenos podataka: `in_ready` i `out_valid` se deaktiviraju, a `out_data` se postavlja na neutralnu vrijednost. Nakon isteka trajanja pauze definisanog signalom `time`, komunikacija se nastavlja.
+
+## FSM dijagram
+
+Rad modula `ethernet_flow_control` zasnovan je na konačnom automatu stanja (FSM) koji upravlja ponašanjem prenosa podataka u zavisnosti od prisustva PAUSE zahtjeva. FSM omogućava jasnu separaciju normalnog režima rada i režima pauze.
+
+Automat se sastoji od dva osnovna stanja: IDLE, u kojem je prenos podataka dozvoljen i odvija se prema Avalon-ST pravilima, i PAUSED, u kojem je prenos privremeno obustavljen na osnovu vrijednosti trajanja pauze. Prelaz između stanja iniciran je prijemom PAUSE zahtjeva, dok se povratak u normalno stanje ostvaruje po isteku definisanog vremena pauze.
+
+
+
 ## Literatura
 
 - https://en.wikipedia.org/wiki/Ethernet_flow_control
