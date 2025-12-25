@@ -77,7 +77,7 @@ Dok signal `is_paused` nije aktivan, podaci se prenose kada su signali `in_valid
 Rad modula `ethernet_flow_control` zasnovan je na konačnom automatu stanja (FSM) koji upravlja ponašanjem prenosa podataka u zavisnosti od prisustva PAUSE zahtjeva. FSM omogućava jasnu separaciju normalnog režima rada i režima pauze.
 
 <p align="center">
-  <img src="FSM/fsm.jpg" width="500" height="500">
+  <img src="FSM/fsm.jpg" width="300" height="300">
 </p>
 
 Automat se sastoji od dva osnovna stanja: IDLE, u kojem je prenos podataka dozvoljen i odvija se prema Avalon-ST pravilima, i PAUSED, u kojem je prenos privremeno obustavljen na osnovu vrijednosti trajanja pauze. Prelaz između stanja iniciran je prijemom PAUSE zahtjeva, dok se povratak u normalno stanje ostvaruje po isteku definisanog vremena pauze.
