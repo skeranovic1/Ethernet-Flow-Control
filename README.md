@@ -10,6 +10,7 @@ Ethernet PAUSE okvir predstavlja MAC Control Ethernet okvir identifikovan EtherT
 </div>
 
 <div align="justify">
+
 Unutar MAC Control nalazi se polje MAC Control Opcode, koje određuje konkretnu kontrolnu funkciju. Opcode vrijednost 0x0001 označava PAUSE funkciju. Polje `pause_time` definiše trajanje pauze u jedinicama (kvantima) trajanja 512 bitskih intervala (max. 65.535 jedinica).
 </div>
 
@@ -20,13 +21,12 @@ Unutar MAC Control nalazi se polje MAC Control Opcode, koje određuje konkretnu 
 </p>
 
 <div align="justify">
+
 U okviru ovog projekta bit će implementiran VHDL modul `ethernet_flow_control` koji podržava:
 - generisanje Ethernet PAUSE okvira na osnovu upravljačkih signala `pause` i `time`
 - prijem i dekodiranje PAUSE okvira
 - kontrolu prenosa podataka putem signala `is_paused`
-</div>
 
-<div align="justify">
 Komunikacija sa okruženjem ostvarena je korištenjem Avalon-ST interfejsa sa ready/valid rukovanjem.
 </div>
 
@@ -37,16 +37,15 @@ Komunikacija sa okruženjem ostvarena je korištenjem Avalon-ST interfejsa sa re
 </p>
 
 <div align="justify">
-Modul `ethernet_flow_control` implementira Ethernet flow control mehanizam baziran na IEEE 802.3x PAUSE okviru. Modul prima upravljačke signale `pause` i `time`, kao i ulazni Avalon-ST interfejs (`in_data`, `in_valid`, `in_sop`, `in_eop`). Na izlazu generiše Avalon-ST interfejs (`out_data`,  `out_valid`, `out_sop`, `out_eop`) i statusni signal `is_paused`.
-</div>
 
-<div align="justify">
+Modul `ethernet_flow_control` implementira Ethernet flow control mehanizam baziran na IEEE 802.3x PAUSE okviru. Modul prima upravljačke signale `pause` i `time`, kao i ulazni Avalon-ST interfejs (`in_data`, `in_valid`, `in_sop`, `in_eop`). Na izlazu generiše Avalon-ST interfejs (`out_data`,  `out_valid`, `out_sop`, `out_eop`) i statusni signal `is_paused`.
+
 Modul koristi Avalon-ST interfejs sa ready/valid rukovanjem. Strana koja šalje podatke postavlja signal `valid` zajedno sa podacima i oznakama početka i kraja okvira (`sop`, `eop`). Strana koja prima podatke signalom `ready` označava svoju spremnost za prijem podataka. Prenos podataka se ostvaruje samo kada su signali `valid` i `ready` istovremeno aktivni.
 </div>
 
 ### Opis signala modula
-
 <div align="justify">
+
 - `in_data` – podatak koji se prenosi u trenutnom ciklusu transfera Ethernet okvira na ulazu 
 - `in_valid` – signal koji indicira da su podaci prisutni na signalu `in_data` u trenutnom ciklusu transfera validni
 - `in_sop` – signal koji indicira početak prenosa Ethernet okvira na ulazu  
@@ -75,14 +74,11 @@ Sekvencijalni dijagram prikazuje razmjenu Ethernet PAUSE okvira između dvije st
 </p>
 
 <div align="justify">
+
 Tx strana formira i šalje Ethernet PAUSE okvir prema Rx strani. Okvir je identifikovan destinacijskom MAC adresom rezervisanom za MAC Control Okvire, EtherType vrijednošću 0x8808 i MAC Control Opcode vrijednošću 0x0001, čime se okvir prepoznaje kao PAUSE okvir. Polje `pause_time` u okviru određuje trajanje pauze prenosa.
-</div>
 
-<div align="justify">
 Nakon prijema PAUSE okvira, Rx strana dekodira MAC Control polja okvira i na osnovu vrijednosti opcode i `pause_time`, aktivira stanje pauze prenosa podataka tokom definisanog vremenskog intervala.
-</div>
 
-<div align="justify">
 Po isteku vremena definisanog poljem `pause_time`, Rx strana automatski napušta stanje pauze i nastavlja normalan prenos podataka.
 </div>
 
@@ -102,19 +98,20 @@ Osnovna ideja Ethernet Flow Control mehanizma jeste da na osnovu zahtjeva generi
 
 ### 1. Režim inicijatora pauze (Tx)
 <div align="justify">
-U ovom režimu, modul reaguje na ulazni signal `pause`. Definiše se željeno trajanje pauze preko ulaznog signala  `time`. Aktiviranjem signala `pause`, generiše se PAUSE okvir na `out_data` interfejsu. Modul formira zaglavlje (Destination Address, Source Address, MAC Ethertype 0x8808, MAC Opcode 0x0001) i definiše vrijednost pauze koja je stigla na ulaz.
+
+U ovom režimu, modul reaguje na ulazni signal `pause`. Definiše se željeno trajanje pauze preko ulaznog signala `time`. Aktiviranjem signala `pause`, generiše se PAUSE okvir na `out_data` interfejsu. Modul formira zaglavlje (Destination Address, Source Address, MAC Ethertype 0x8808, MAC Opcode 0x0001) i definiše vrijednost pauze koja je stigla na ulaz.
 </div>
 
 ### 2. Režim izvršioca pauze (Rx)
 <div align="justify">
+
 U ovom režimu, kada modul na svom `in_data` interfejsu detektuje dolazni kontrolni okvir, on automatski preuzima ulogu prijemne stanice. Rx izvršava parsiranje zaglavlja i po potvrdi validnosti PAUSE okvira vrši ekstrakciju vrijednosti vremena pause `Pause Time`. Pomoću unutrašnjeg brojača skalira se primljena vrijednost prema standardu tako da jedan kvant pauze odgovara 64 bajta, odnosno 64 clock intervala. Tokom rada brojača, signal `is_paused` se održava na logičnoj '1' blokirajući dalje slanje podataka sve do isteka definisanog vremena.
 </div>
-
-
 
 ## FSM dijagram
 
 <div align="justify">
+
 Rad modula `ethernet_flow_control` zasnovan je na konačnom automatu stanja (FSM) koji upravlja ponašanjem prenosa podataka u zavisnosti od prisustva PAUSE zahtjeva. 
 </div>
 
@@ -124,6 +121,7 @@ Rad modula `ethernet_flow_control` zasnovan je na konačnom automatu stanja (FSM
 
 ### FSM - režim incijatora pauze
 <div align="justify">
+
 FSM je dizajniran kao _Moore_-ov automat. FSM režima incijatora pauze sadrži sljedeća stanja:
 
 1. **IDLE** - stanje mirovanja, 
@@ -141,6 +139,7 @@ FSM je dizajniran kao _Moore_-ov automat. FSM režima incijatora pauze sadrži s
 
 ### FSM - režim izvršioca pauze
 <div align="justify">
+
 FSM je dizajniran kao _Moore_-ov automat. FSM režima izvršioca pauze sadrži sljedeća stanja:
 
 1. **WAIT_SOP** - čeka početak okvira, 
@@ -152,8 +151,8 @@ FSM je dizajniran kao _Moore_-ov automat. FSM režima izvršioca pauze sadrži s
 7. **WAIT_EOP** - čeka se kraj paketa.
 8. **HOLD_PAUSE** - izlazni signal `is_paused` jednak logičkoj '1' dok interni brojač ne odbroji do nule.
 </div>
-## Literatura
 
+## Literatura
 - https://en.wikipedia.org/wiki/Ethernet_flow_control
 - https://www.intel.com/content/www/us/en/docs/programmable/683091/20-1/introduction-to-the-interface-specifications.html
 - Predavanja iz predmeta *Arhitekture paketskih čvorišta*, V. prof. dr Enia Kaljića, mr. dipl. ing.: https://c2.etf.unsa.ba/course/view.php?id=158
