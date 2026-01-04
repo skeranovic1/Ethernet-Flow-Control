@@ -114,13 +114,24 @@ U ovom režimu, kada modul na svom `in_data` interfejsu detektuje dolazni kontro
 ## FSM dijagram
 
 <div align="justify">
-Rad modula `ethernet_flow_control` zasnovan je na konačnom automatu stanja (FSM) koji upravlja ponašanjem prenosa podataka u zavisnosti od prisustva PAUSE zahtjeva. FSM omogućava jasnu separaciju normalnog režima rada i režima pauze.
+Rad modula `ethernet_flow_control` zasnovan je na konačnom automatu stanja (FSM) koji upravlja ponašanjem prenosa podataka u zavisnosti od prisustva PAUSE zahtjeva. 
+</div>
 
 <p align="center">
-  <img src="FSM/fsm.jpg" width="300" height="300">
+  <img src="FSM/fsmtx1.jpg" width="600" height="600">
 </p>
 
-Automat se sastoji od dva osnovna stanja: IDLE, u kojem je prenos podataka dozvoljen i odvija se prema Avalon-ST pravilima, i PAUSED, u kojem je prenos privremeno obustavljen na osnovu vrijednosti trajanja pauze. Prelaz između stanja iniciran je prijemom PAUSE zahtjeva, dok se povratak u normalno stanje ostvaruje po isteku definisanog vremena pauze.
+### FSM - režim incijatora pauze
+<div align="justify">
+FSM je dizajniran kao _Moore_-ov automat. FSM režima incijatora pauze sadrži sljedeća stanja: 
+1. IDLE - stanje mirovanja, 
+2. SEND_DEST - šalje MAC adresu (01:80:C2:00:00:01),
+3. SEND_SRC - šalje MAC adresu lokalnog uređaja (11:22:33:44:AA:BB),
+4. SEND_TYPE - šalje EtherType 0x8808,
+5. SEND_OPCODE - šalje Opcode 0x0001 (PAUSE komanda),
+6. SEND_PTIME - šalje trajanje pauze i
+7. SEND_PADDING - generiše nule (0x00) kako bi se dostiglo minimalno 64 bajta paketa.
+</div>
 
 ## Literatura
 
