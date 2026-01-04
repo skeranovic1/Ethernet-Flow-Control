@@ -13,6 +13,7 @@ Ethernet PAUSE okvir predstavlja MAC Control Ethernet okvir identifikovan EtherT
 Unutar MAC Control nalazi se polje MAC Control Opcode, koje određuje konkretnu kontrolnu funkciju. Opcode vrijednost 0x0001 označava PAUSE funkciju. Polje `pause_time` definiše trajanje pauze u jedinicama (kvantima) trajanja 512 bitskih intervala (max. 65.535 jedinica).
 </div>
 
+---
 
 <p align="center">
   <img src="Images/frame.jpg" alt="Struktura PAUSE okvira">
@@ -118,7 +119,7 @@ Rad modula `ethernet_flow_control` zasnovan je na konačnom automatu stanja (FSM
 </div>
 
 <p align="center">
-  <img src="FSM/fsmtx1.jpg" width="600" height="600">
+  <img src="FSM/fsmtx1.jpg" width="500" height="500">
 </p>
 
 ### FSM - režim incijatora pauze
@@ -134,6 +135,23 @@ FSM je dizajniran kao _Moore_-ov automat. FSM režima incijatora pauze sadrži s
 7. **SEND_PADDING** - generiše nule (0x00) kako bi se dostiglo minimalno 64 bajta paketa.
 </div>
 
+<p align="center">
+  <img src="FSM/fsmrx.jpg" width="500" height="500">
+</p>
+
+### FSM - režim izvršioca pauze
+<div align="justify">
+FSM je dizajniran kao _Moore_-ov automat. FSM režima izvršioca pauze sadrži sljedeća stanja:
+
+1. **WAIT_SOP** - čeka početak okvira, 
+2. **CHECK_DEST** - provjerava MAC adresu (01:80:C2:00:00:01),
+3. **CHECK_SRC** - provjerava izvor (11:22:33:44:AA:BB),
+4. **CHECK_TYPE** - provjera EtherType 0x8808,
+5. **CHECK_OPCODE** - potvrda da se radi o PAUSE komandi (0x0001),
+6. **GET_PTIME** - upisuje vrijeme pauze u interni registar i
+7. **WAIT_EOP** - čeka se kraj paketa.
+8. **HOLD_PAUSE** - izlazni signal `is_paused` jednak logičkoj '1' dok interni brojač ne odbroji do nule.
+</div>
 ## Literatura
 
 - https://en.wikipedia.org/wiki/Ethernet_flow_control
