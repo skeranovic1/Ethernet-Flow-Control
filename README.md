@@ -123,14 +123,15 @@ Rad modula `ethernet_flow_control` zasnovan je na konačnom automatu stanja (FSM
 
 ### FSM - režim incijatora pauze
 <div align="justify">
-FSM je dizajniran kao _Moore_-ov automat. FSM režima incijatora pauze sadrži sljedeća stanja: 
-1. IDLE - stanje mirovanja, 
-2. SEND_DEST - šalje MAC adresu (01:80:C2:00:00:01),
-3. SEND_SRC - šalje MAC adresu lokalnog uređaja (11:22:33:44:AA:BB),
-4. SEND_TYPE - šalje EtherType 0x8808,
-5. SEND_OPCODE - šalje Opcode 0x0001 (PAUSE komanda),
-6. SEND_PTIME - šalje trajanje pauze i
-7. SEND_PADDING - generiše nule (0x00) kako bi se dostiglo minimalno 64 bajta paketa.
+FSM je dizajniran kao _Moore_-ov automat. FSM režima incijatora pauze sadrži sljedeća stanja:
+
+1. **IDLE** - stanje mirovanja, 
+2. **SEND_DEST** - šalje MAC adresu (01:80:C2:00:00:01),
+3. **SEND_SRC** - šalje MAC adresu lokalnog uređaja (11:22:33:44:AA:BB),
+4. **SEND_TYPE** - šalje EtherType 0x8808,
+5. **SEND_OPCODE** - šalje Opcode 0x0001 (PAUSE komanda),
+6. **SEND_PTIME** - šalje trajanje pauze i
+7. **SEND_PADDING** - generiše nule (0x00) kako bi se dostiglo minimalno 64 bajta paketa.
 </div>
 
 ## Literatura
