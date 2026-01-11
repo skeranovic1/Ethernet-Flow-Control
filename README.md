@@ -89,7 +89,7 @@ WaveDrom dijagram prikazuje kompletan proces generisanja, prenosa i detekcije Et
 </div>
 
 <p align="center">
-  <img src="WaveDrom/waveform.png" alt="WaveDrom dijagram">
+  <img src="WaveDrom/waveform.png" alt="WaveDrom dijagram" width="1200" height="1200">
 </p>
 
 <div align="justify">
@@ -151,6 +151,33 @@ FSM je dizajniran kao _Moore_-ov automat. FSM režima izvršioca pauze sadrži s
 7. **WAIT_EOP** - čeka se kraj paketa.
 8. **HOLD_PAUSE** - izlazni signal `is_paused` jednak logičkoj '1' dok interni brojač ne odbroji do nule.
 </div>
+
+## Ethernet Flow Control -  VHDL modul
+<div align="justify">
+  
+`ethernet_flow_control` modul implementira Ethernet Flow Control koristeći IEEE 802.3x *pause* okvir,
+sa jasno razdvojenom predajnom (Tx) i prijemnom (Rx) stranom. Logika je pretežno
+sekvencijalna i realizovana kroz dva nezavisna FSM-a: jedan koji generiše pause
+okvir kada je aktivan signal `pause`, i drugi koji dekodira primljeni pause okvir
+i izvlači `pause time`.
+
+Komunikacija sa ostatkom sistema realizovana je preko Avalon-ST tipa, sa `valid/ready` rukovanjem
+i podrškom za `sop/eop` signale. Tx strana šalje bajt-po-bajt Ethernet pause okvir
+kroz stanja (dest, src, type, opcode, time, padding), dok Rx strana prati tok
+okvira, prepoznaje strukturu pause poruke i pokreće interni tajmer.
+
+Kada se primi validan pause okvir, modul ulazi u stanje pauze i generiše signal
+`is_paused` tokom trajanja definisanog `pause time` poljem, čime se simulira
+realno Ethernet flow control ponašanje.
+</div>
+
+### Compilation report
+
+<p align="center">
+  <img src="VHDL/flowsummary.png" width="500" height="500">
+</p>
+
+VHDL `ethernet_flow_control` modul je uspješno sintetiziran u Quartus Prime Lite razvojnog okruženja.
 
 ## Literatura
 - https://en.wikipedia.org/wiki/Ethernet_flow_control
