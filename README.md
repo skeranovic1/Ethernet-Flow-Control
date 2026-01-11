@@ -152,7 +152,7 @@ FSM je dizajniran kao _Moore_-ov automat. FSM režima izvršioca pauze sadrži s
 8. **HOLD_PAUSE** - izlazni signal `is_paused` jednak logičkoj '1' dok interni brojač ne odbroji do nule.
 </div>
 
-## Ethernet Flow Control -  VHDL modul
+## Ethernet Flow Control - VHDL modul
 <div align="justify">
   
 `ethernet_flow_control` modul implementira Ethernet Flow Control koristeći IEEE 802.3x *pause* okvir,
@@ -170,6 +170,21 @@ Kada se primi validan pause okvir, modul ulazi u stanje pauze i generiše signal
 `is_paused` tokom trajanja definisanog `pause time` poljem, čime se simulira
 realno Ethernet flow control ponašanje.
 </div>
+
+### FSM dijagrami VHDL modula 
+<div align="justify"> U nastavku su prikazani FSM dijagrami predajne (Tx) i prijemne (Rx) strane modula,
+generisani direktno u Quartus Prime Lite *FSM Viewer*-u. Dijagrami u dokumentaciji se slažu sa očekivanim 
+stanjima i prijelazima definisanim u dizajnu. 
+
+<p align="center">
+  <img src="FSM/txfsm_quartus.png" width="500" height="500">
+  <em>FSM predajne (Tx) strane</em>
+</p>
+
+<p align="center">
+  <img src="FSM/rxfsm_quartus.png" width="500" height="500">
+  <em>FSM prijemne (Rx) strane</em>
+</p>
 
 ### Compilation report
 
