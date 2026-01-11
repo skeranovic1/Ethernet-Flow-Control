@@ -174,7 +174,7 @@ realno Ethernet flow control ponašanje.
 ### Compilation report
 
 <p align="center">
-  <img src="VHDL/flowsummary.png" width="500" height="500">
+  <img src="VHDL/flowsummary.png" width="800" height="800">
 </p>
 
 VHDL `ethernet_flow_control` modul je uspješno sintetiziran u Quartus Prime Lite razvojnog okruženja.
