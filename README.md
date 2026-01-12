@@ -179,15 +179,14 @@ realno Ethernet flow control ponašanje.
 <div align="justify"> U nastavku su prikazani FSM dijagrami predajne (Tx) i prijemne (Rx) strane modula,
 generisani direktno u Quartus Prime Lite *FSM Viewer*-u. Dijagrami u dokumentaciji se slažu sa očekivanim 
 stanjima i prijelazima definisanim u dizajnu. 
+</div>
 
 <p align="center">
   <img src="FSM/txfsm_quartus.png" width="500" height="500">
-  <em>FSM predajne (Tx) strane</em>
 </p>
 
 <p align="center">
   <img src="FSM/rxfsm_quartus.png" width="500" height="500">
-  <em>FSM prijemne (Rx) strane</em>
 </p>
 
 ### Compilation report
