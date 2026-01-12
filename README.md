@@ -87,7 +87,7 @@ Po isteku vremena definisanog poljem `pause_time`, Rx strana automatski napušta
 <div align="justify">
 WaveDrom dijagram prikazuje kompletan proces generisanja, prenosa i detekcije Ethernet Pause okvira. 
 </div>
-
+<br>
 <p align="center">
   <img src="WaveDrom/waveform.png" alt="WaveDrom dijagram" width="1200" height="1200">
 </p>
