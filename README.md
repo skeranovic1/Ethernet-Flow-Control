@@ -184,7 +184,8 @@ realno Ethernet flow control ponašanje.
 VHDL `ethernet_flow_control` modul je uspješno sintetiziran u Quartus Prime Lite razvojnog okruženja.
 
 ### FSM dijagrami VHDL modula 
-<div align="justify"> U nastavku su prikazani FSM dijagrami predajne (Tx) i prijemne (Rx) strane modula,
+<div align="justify"> 
+U nastavku su prikazani FSM dijagrami predajne (Tx) i prijemne (Rx) strane modula,
 generisani direktno u Quartus Prime Lite FSM Viewer-u. Dijagrami u dokumentaciji se slažu sa očekivanim 
 stanjima i prijelazima definisanim u dizajnu. 
 </div>
@@ -198,20 +199,23 @@ stanjima i prijelazima definisanim u dizajnu.
   <img src="FSM/rxfsm_quartus.png" width="700" height="700" >
 </p>
 
-## RTL Viewer
+### RTL Viewer
 
 <div align="justify">
+  
 Na RTL Viewer prikazu vide se svi ulazni i izlazni signali modula, kao i kompletna unutrašnja logika generisana iz VHDL koda.  
 Struktura pokazuje kako se opis u VHDL-u prevodi u stvarne hardverske blokove poput osnovnih logičkih kola, multipleksera i registara.
 </div>
+
 <br>
 <p align="center">
   <img src="VHDL/rtl.png" width="700" height="700" >
 </p>
 
-## ModelSim
+### ModelSim
 
 <div align="justify">
+  
 U ModelSim okruženju izvršena je simulacija rada modula koristeći testbench `tb_finalno.vhd`. Na osnovu transcripta može se zaključiti da su svi entiteti i arhitekture pravilno učitani i da je simulacija započela bez problema.
 </div>
 
@@ -222,6 +226,7 @@ U ModelSim okruženju izvršena je simulacija rada modula koristeći testbench `
 <br>
 
 <div align="justify">
+  
 Tokom simulacije u ModelSim-u posmatrani su talasni oblici svih relevantnih signala modula.  
 Dobijeni waveform prikaz je u skladu sa WaveDrom dijagramom prethodno prikazanim u ovom dokumentu.  
 Redoslijed generisanja PAUSE okvira, prijema okvira i aktivacije signala `is_paused` odgovara očekivanom ponašanju definisanom u specifikaciji modula. 
@@ -229,21 +234,42 @@ Redoslijed generisanja PAUSE okvira, prijema okvira i aktivacije signala `is_pau
 
 <br>
 <p align="center">
-  <img src="VHDL/modelsim.png" width="500" height="500" >
+  <img src="VHDL/modelsim.png" width="900" height="900" >
 </p>
 <br>
 
 <div align="justify">
+  
 Prvi prikaz daje kompletan pregled simulacije i omogućava uvid u cjelokupan tok događaja – od generisanja PAUSE okvira, preko njegovog prijema, do isteka pauze.  
-Drugi prikaz predstavlja uvećani dio istog talasnog oblika, kako bi se jasno mogle vidjeti pojedinačne promjene signala, vrijednosti `data` signala i stanja FSM automata.
+Drugi i treći prikaz predstavljaju uvećani dio istog talasnog oblika, kako bi se jasno mogle vidjeti pojedinačne promjene signala, vrijednosti `data` signala i stanja FSM automata.
 </div>
 <br>
 
 <p align="center">
-  <img src="VHDL/prvidio.png" width="45%">
-  <img src="VHDL/drugidio.png" width="45%">
+  <img src="VHDL/prvidio.png" width="900" height="900" >
+</p>
+<p align="center">
+  <img src="VHDL/drugidio.png" width="900" height="900" >
 </p>
 
+<div align="justify">
+  
+Na gornjem prikazu se jasno vidi redoslijed bajtova koji čine PAUSE okvir, kao i prelazak Tx i Rx FSM-ova kroz odgovarajuća stanja tokom prenosa.  
+Donji prikaz fokusiran je na trajanje pauze nakon prijema PAUSE okvira. Za vrijednost `pause_time = 0x0001`, modul generiše pauzu u trajanju od jednog kvanta, što odgovara 512 bitskih intervala, odnosno 64 bajta ili 64 clock ciklusa. Tokom tog perioda signal `is_paused` ostaje aktivan, a po isteku tog vremena automatski se vraća u neaktivno stanje.
+</div>
+
+## Zaključak
+
+<div align="justify">
+  
+U okviru ovog projekta realizovan je VHDL modul `ethernet_flow_control` koji implementira Ethernet Flow Control mehanizam definisan standardom IEEE 802.3x. Modul omogućava generisanje, prijem i obradu Ethernet PAUSE okvira, kao i kontrolu toka podataka putem signala `is_paused`, uz korištenje Avalon-ST interfejsa sa ready/valid rukovanjem.
+
+Funkcionalnost modula verifikovana je kroz blok dijagrame, FSM dijagrame, RTL prikaz i simulaciju u ModelSim okruženju. Dobijeni rezultati pokazuju da se modul ponaša u skladu sa specifikacijom: pravilno generiše PAUSE okvir, ispravno dekodira primljeni okvir i precizno realizuje trajanje pauze na osnovu polja `pause_time`.
+
+U budućem razvoju modul se može unaprijediti tako da podržava promjenjive MAC adrese, rad sa više tokova podataka, praćenje broja poslatih i primljenih PAUSE okvira, te prilagođavanje za rad u većim i bržim mrežama.
+
+
+</div>
 
 ## Literatura
 - https://en.wikipedia.org/wiki/Ethernet_flow_control
