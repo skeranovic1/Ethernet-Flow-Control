@@ -177,22 +177,23 @@ realno Ethernet flow control ponašanje.
 
 ### FSM dijagrami VHDL modula 
 <div align="justify"> U nastavku su prikazani FSM dijagrami predajne (Tx) i prijemne (Rx) strane modula,
-generisani direktno u Quartus Prime Lite *FSM Viewer*-u. Dijagrami u dokumentaciji se slažu sa očekivanim 
+generisani direktno u Quartus Prime Lite FSM Viewer-u. Dijagrami u dokumentaciji se slažu sa očekivanim 
 stanjima i prijelazima definisanim u dizajnu. 
 </div>
 
+<br>
 <p align="center">
-  <img src="FSM/txfsm_quartus.png" width="500" height="500">
+  <img src="FSM/txfsm_quartus.png" width="700" height="500">
 </p>
-
+<br>
 <p align="center">
-  <img src="FSM/rxfsm_quartus.png" width="500" height="500">
+  <img src="FSM/rxfsm_quartus.png" width="700" height="500" >
 </p>
 
 ### Compilation report
 
 <p align="center">
-  <img src="VHDL/flowsummary.png" width="700" height="700">
+  <img src="VHDL/flowsummary.png" width="700" height="700" >
 </p>
 
 VHDL `ethernet_flow_control` modul je uspješno sintetiziran u Quartus Prime Lite razvojnog okruženja.
