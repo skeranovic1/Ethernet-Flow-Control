@@ -175,6 +175,14 @@ Kada se primi validan pause okvir, modul ulazi u stanje pauze i generiše signal
 realno Ethernet flow control ponašanje.
 </div>
 
+### Compilation report
+
+<p align="center">
+  <img src="VHDL/flowsummary.png" width="700" height="700" >
+</p>
+
+VHDL `ethernet_flow_control` modul je uspješno sintetiziran u Quartus Prime Lite razvojnog okruženja.
+
 ### FSM dijagrami VHDL modula 
 <div align="justify"> U nastavku su prikazani FSM dijagrami predajne (Tx) i prijemne (Rx) strane modula,
 generisani direktno u Quartus Prime Lite FSM Viewer-u. Dijagrami u dokumentaciji se slažu sa očekivanim 
@@ -190,13 +198,11 @@ stanjima i prijelazima definisanim u dizajnu.
   <img src="FSM/rxfsm_quartus.png" width="700" height="500" >
 </p>
 
-### Compilation report
+## RTL Viewer
 
 <p align="center">
-  <img src="VHDL/flowsummary.png" width="700" height="700" >
+  <img src="VHDL/rtl.png" width="700" height="700" >
 </p>
-
-VHDL `ethernet_flow_control` modul je uspješno sintetiziran u Quartus Prime Lite razvojnog okruženja.
 
 ## Literatura
 - https://en.wikipedia.org/wiki/Ethernet_flow_control
