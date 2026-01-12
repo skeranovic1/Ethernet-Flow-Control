@@ -227,9 +227,7 @@ U ModelSim okruženju izvršena je simulacija rada modula koristeći testbench `
 
 <div align="justify">
   
-Tokom simulacije u ModelSim-u posmatrani su talasni oblici svih relevantnih signala modula.  
-Dobijeni waveform prikaz je u skladu sa WaveDrom dijagramom prethodno prikazanim u ovom dokumentu.  
-Redoslijed generisanja PAUSE okvira, prijema okvira i aktivacije signala `is_paused` odgovara očekivanom ponašanju definisanom u specifikaciji modula. 
+Tokom simulacije u ModelSim-u posmatrani su talasni oblici svih relevantnih signala modula. Dobijeni waveform prikaz je u skladu sa WaveDrom dijagramom prethodno prikazanim u ovom dokumentu. Redoslijed generisanja PAUSE okvira, prijema okvira i aktivacije signala `is_paused` odgovara očekivanom ponašanju definisanom u specifikaciji modula. 
 </div>
 
 <br>
@@ -240,8 +238,7 @@ Redoslijed generisanja PAUSE okvira, prijema okvira i aktivacije signala `is_pau
 
 <div align="justify">
   
-Prvi prikaz daje kompletan pregled simulacije i omogućava uvid u cjelokupan tok događaja – od generisanja PAUSE okvira, preko njegovog prijema, do isteka pauze.  
-Drugi i treći prikaz predstavljaju uvećani dio istog talasnog oblika, kako bi se jasno mogle vidjeti pojedinačne promjene signala, vrijednosti `data` signala i stanja FSM automata.
+Prvi prikaz daje kompletan pregled simulacije i omogućava uvid u cjelokupan tok događaja – od generisanja PAUSE okvira, preko njegovog prijema, do isteka pauze. Drugi i treći prikaz predstavljaju uvećani dio istog talasnog oblika, kako bi se jasno mogle vidjeti pojedinačne promjene signala, vrijednosti `data` signala i stanja FSM automata.
 </div>
 <br>
 
