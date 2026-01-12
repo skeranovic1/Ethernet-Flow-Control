@@ -191,18 +191,25 @@ stanjima i prijelazima definisanim u dizajnu.
 
 <br>
 <p align="center">
-  <img src="FSM/txfsm_quartus.png" width="700" height="500">
+  <img src="FSM/txfsm_quartus.png" width="700" height="700">
 </p>
 <br>
 <p align="center">
-  <img src="FSM/rxfsm_quartus.png" width="700" height="500" >
+  <img src="FSM/rxfsm_quartus.png" width="700" height="700" >
 </p>
 
 ## RTL Viewer
 
+<div align="justify">
+Na RTL Viewer prikazu vide se svi ulazni i izlazni signali modula, kao i kompletna unutrašnja logika generisana iz VHDL koda.  
+Struktura pokazuje kako se opis u VHDL-u prevodi u stvarne hardverske blokove poput osnovnih logičkih kola, multipleksera i registara.
+</div>
+<br>
 <p align="center">
   <img src="VHDL/rtl.png" width="700" height="700" >
 </p>
+
+## ModelSim 
 
 ## Literatura
 - https://en.wikipedia.org/wiki/Ethernet_flow_control
