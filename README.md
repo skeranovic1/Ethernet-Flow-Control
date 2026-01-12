@@ -115,11 +115,12 @@ U ovom režimu, kada modul na svom `in_data` interfejsu detektuje dolazni kontro
 Rad modula `ethernet_flow_control` zasnovan je na konačnom automatu stanja (FSM) koji upravlja ponašanjem prenosa podataka u zavisnosti od prisustva PAUSE zahtjeva. 
 </div>
 
+### FSM - režim incijatora pauze
+
 <p align="center">
-  <img src="FSM/fsmtx1.jpg" width="500" height="500">
+  <img src="FSM/fsmtx_novo.jpg" width="500" height="500">
 </p>
 
-### FSM - režim incijatora pauze
 <div align="justify">
 
 FSM je dizajniran kao _Moore_-ov automat. FSM režima incijatora pauze sadrži sljedeća stanja:
@@ -133,11 +134,14 @@ FSM je dizajniran kao _Moore_-ov automat. FSM režima incijatora pauze sadrži s
 7. **SEND_PADDING** - generiše nule (0x00) kako bi se dostiglo minimalno 64 bajta paketa.
 </div>
 
-<p align="center">
-  <img src="FSM/fsmrx.jpg" width="500" height="500">
-</p>
+---
 
 ### FSM - režim izvršioca pauze
+
+<p align="center">
+  <img src="FSM/fsmrx_novo.jpg" width="500" height="500">
+</p>
+
 <div align="justify">
 
 FSM je dizajniran kao _Moore_-ov automat. FSM režima izvršioca pauze sadrži sljedeća stanja:
