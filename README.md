@@ -209,7 +209,41 @@ Struktura pokazuje kako se opis u VHDL-u prevodi u stvarne hardverske blokove po
   <img src="VHDL/rtl.png" width="700" height="700" >
 </p>
 
-## ModelSim 
+## ModelSim
+
+<div align="justify">
+U ModelSim okruženju izvršena je simulacija rada modula koristeći testbench `tb_finalno.vhd`. Na osnovu transcripta može se zaključiti da su svi entiteti i arhitekture pravilno učitani i da je simulacija započela bez problema.
+</div>
+
+<br>
+<p align="center">
+  <img src="VHDL/transcript.png" width="500" height="500" >
+</p>
+<br>
+
+<div align="justify">
+Tokom simulacije u ModelSim-u posmatrani su talasni oblici svih relevantnih signala modula.  
+Dobijeni waveform prikaz je u skladu sa WaveDrom dijagramom prethodno prikazanim u ovom dokumentu.  
+Redoslijed generisanja PAUSE okvira, prijema okvira i aktivacije signala `is_paused` odgovara očekivanom ponašanju definisanom u specifikaciji modula. 
+</div>
+
+<br>
+<p align="center">
+  <img src="VHDL/modelsim.png" width="500" height="500" >
+</p>
+<br>
+
+<div align="justify">
+Prvi prikaz daje kompletan pregled simulacije i omogućava uvid u cjelokupan tok događaja – od generisanja PAUSE okvira, preko njegovog prijema, do isteka pauze.  
+Drugi prikaz predstavlja uvećani dio istog talasnog oblika, kako bi se jasno mogle vidjeti pojedinačne promjene signala, vrijednosti `data` signala i stanja FSM automata.
+</div>
+<br>
+
+<p align="center">
+  <img src="VHDL/prvidio.png" width="45%">
+  <img src="VHDL/drugidio.png" width="45%">
+</p>
+
 
 ## Literatura
 - https://en.wikipedia.org/wiki/Ethernet_flow_control
