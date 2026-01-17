@@ -289,6 +289,7 @@ U osnovnom testbench-u, gdje je `pause_time` = 0x0001, razlika između kursora i
 </div>
 
 ### 3. Testbench sa _backpressure_ u sredini paketa
+
 div align="justify">
 
 U ovom testbenchu se uvodi _backpressure_, to jeste signal `out_ready` se privremeno postavlja na logičku vrijednost '0'. Cilj ovog scenarija jeste da se pokaže da modul zaustavlja slanje podataka kada je `out_ready` = 0, zadržava trenutni bajt i stanje FSM-a, nastavlja tačno od istog mjesta kada `out_ready` ponovo postane 1 i ne dolazi do gubitka ili preskakanja bajtova.
@@ -299,10 +300,10 @@ U ovom testbenchu se uvodi _backpressure_, to jeste signal `out_ready` se privre
   <img src="VHDL/tb_bp1.png" width="900" height="900" >
 </p>
 
-div align="justify">
 
 Ovaj testbench dokazuje da modul pravilno podržava _backpressure_ u toku aktivnog prenosa podataka.
-</div>
+
+
 
 <!--
 ### Testbench sa _backpressure_ na samom početku paketa
@@ -328,8 +329,6 @@ U okviru ovog projekta realizovan je VHDL modul `ethernet_flow_control` koji imp
 Funkcionalnost modula verifikovana je kroz blok dijagrame, FSM dijagrame, RTL prikaz i simulaciju u ModelSim okruženju. Dobijeni rezultati pokazuju da se modul ponaša u skladu sa specifikacijom: pravilno generiše PAUSE okvir, ispravno dekodira primljeni okvir i precizno realizuje trajanje pauze na osnovu polja `pause_time`.
 
 U budućem razvoju modul se može unaprijediti tako da podržava promjenjive MAC adrese, rad sa više tokova podataka, praćenje broja poslatih i primljenih PAUSE okvira, te prilagođavanje za rad u većim i bržim mrežama.
-
-
 </div>
 
 ## Literatura
