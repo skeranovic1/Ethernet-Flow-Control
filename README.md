@@ -215,8 +215,20 @@ Struktura pokazuje kako se opis u VHDL-u prevodi u stvarne hardverske blokove po
 ### ModelSim
 
 <div align="justify">
+U projektu su definisana četiri različita testbench-a, od kojih svaki demonstrira specifičan scenarij rada modula:
+
+1. Osnovni testbench - bez _backpressure_ i `pause_time` = 0x0001
+2. Testbench sa dužom pauzom - `pause_time` = 0x0002
+3. Testbench sa _backpressure_ u sredini paketa
+<!--4. Testbench sa _backpressure_ na samom početku paketa-->
+
+Cilj podjele jeste da se jasno pokaže ponašanje modula pri različitim vrijednostima pauze i otpornost modula na _backpressure_ u različitim fazama prenosa.
+</div>
+
+
+<div align="justify">
   
-U ModelSim okruženju izvršena je simulacija rada modula koristeći testbench `tb_finalno.vhd`. Na osnovu transcripta može se zaključiti da su svi entiteti i arhitekture pravilno učitani i da je simulacija započela bez problema.
+U ModelSim okruženju izvršena je simulacija rada modula koristeći testbench. Na osnovu transcripta može se zaključiti da su svi entiteti i arhitekture pravilno učitani i da je simulacija započela bez problema.
 </div>
 
 <br>
@@ -227,6 +239,8 @@ U ModelSim okruženju izvršena je simulacija rada modula koristeći testbench `
 
 <div align="justify">
   
+### 1. Osnovni testbench
+ 
 Tokom simulacije u ModelSim-u posmatrani su talasni oblici svih relevantnih signala modula. Dobijeni waveform prikaz je u skladu sa WaveDrom dijagramom prethodno prikazanim u ovom dokumentu. Redoslijed generisanja PAUSE okvira, prijema okvira i aktivacije signala `is_paused` odgovara očekivanom ponašanju definisanom u specifikaciji modula. 
 </div>
 
@@ -252,9 +266,59 @@ Prvi prikaz daje kompletan pregled simulacije i omogućava uvid u cjelokupan tok
 <div align="justify">
   
 Na gornjem prikazu se jasno vidi redoslijed bajtova koji čine PAUSE okvir, kao i prelazak Tx i Rx FSM-ova kroz odgovarajuća stanja tokom prenosa.  
-Donji prikaz fokusiran je na trajanje pauze nakon prijema PAUSE okvira. Za vrijednost `pause_time = 0x0001`, modul generiše pauzu u trajanju od jednog kvanta, što odgovara 512 bitskih intervala, odnosno 64 bajta ili 64 clock ciklusa. Tokom tog perioda signal `is_paused` ostaje aktivan, a po isteku tog vremena automatski se vraća u neaktivno stanje.
+Donji prikaz fokusiran je na trajanje pauze nakon prijema PAUSE okvira. Za vrijednost `pause_time = 0x0001`, modul generiše pauzu u trajanju od jednog kvanta, što odgovara 512 bitskih intervala, odnosno 64 bajta ili 64 clock ciklusa. Pomoću kursora je očitano trajanje pauze 640 ns. Tokom tog perioda signal `is_paused` ostaje aktivan, a po isteku tog vremena automatski se vraća u neaktivno stanje.  Signal `out_ready` je postavljen na logičku vrijednost '1' i ne postoji _backpressure_.
 </div>
 
+### 2. Testbench sa dužom pauzom
+
+<div align="justify">
+  
+Drugi testbench je skoro identičan osnovnom, ali se razlikuje po vrijednosti `pause_time` = 0x0002. 
+</div>
+<br>
+<p align="center">
+  <img src="VHDL/tb0002.png" width="900" height="900" >
+</p>
+<p align="center">
+  <img src="VHDL/tb00022.png" width="900" height="900" >
+</p>
+
+<div align="justify">
+  
+U osnovnom testbench-u, gdje je `pause_time` = 0x0001, razlika između kursora iznosi 640 ns, što odgovara trajanju pauze od jednog kvanta, a u testbenchu-u sa dužom pauzom (`pause_time` = 0x0002), kursori pokazuju da signal `is_paused` ostaje aktivan 1280 ns, što je tačno dvostruko duže nego u osnovnom slučaju i potvrđuje da modul pravilno skalira trajanje pauze u zavisnosti od `pause_time`. 
+</div>
+
+### 3. Testbench sa _backpressure_ u sredini paketa
+div align="justify">
+
+U ovom testbenchu se uvodi _backpressure_, to jeste signal `out_ready` se privremeno postavlja na logičku vrijednost '0'. Cilj ovog scenarija jeste da se pokaže da modul zaustavlja slanje podataka kada je `out_ready` = 0, zadržava trenutni bajt i stanje FSM-a, nastavlja tačno od istog mjesta kada `out_ready` ponovo postane 1 i ne dolazi do gubitka ili preskakanja bajtova.
+</div>
+
+<br>
+<p align="center">
+  <img src="VHDL/tb_bp1.png" width="900" height="900" >
+</p>
+
+div align="justify">
+
+Ovaj testbench dokazuje da modul pravilno podržava _backpressure_ u toku aktivnog prenosa podataka.
+</div>
+
+<!--
+### Testbench sa _backpressure_ na samom početku paketa
+div align="justify">
+
+U posljednjem testbenchu se simulira slučaj kada je signal `out_ready` = 0 tačno u trenutku kada modul želi započeti slanje paketa. Provjerava se da li modul ne započinje slanje dok je `out_ready` = 0, ne dolazi do gubitka početnog bajta paketa i kompletan paket se šalje tek kada se steknu uslovi (`out_ready` = 1).
+</div>
+<br>
+<p align="center">
+  <img src="VHDL/tb_bp1.png" width="900" height="900" >
+</p>
+div align="justify">
+
+Ovaj testbench dokazuje da modul pravilno odlaže slanje paketa kada izlazni interfejs nije spreman od samog početka prenosa.
+</div>
+-->
 ## Zaključak
 
 <div align="justify">
