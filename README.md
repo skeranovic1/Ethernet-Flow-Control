@@ -215,7 +215,7 @@ Na RTL Viewer prikazu vide se svi ulazni i izlazni signali modula, kao i komplet
 
 <div align="justify">
 U projektu su definisana četiri različita testbench-a, od kojih svaki demonstrira specifičan scenarij rada modula:
-
+<br>
 1. Osnovni testbench - bez _backpressure_ i `pause_time` = 0x0001
 2. Testbench sa dužom pauzom - `pause_time` = 0x0002
 3. Testbench sa _backpressure_ u sredini paketa
@@ -308,7 +308,7 @@ Ovaj testbench dokazuje da modul pravilno podržava _backpressure_ u toku aktivn
 
 
 ### Testbench sa _backpressure_ na samom početku paketa
-div align="justify">
+<div align="justify">
 
 U posljednjem testbenchu se simulira slučaj kada je signal `out_ready` = 0 tačno u trenutku kada modul želi započeti slanje paketa. Provjerava se da li modul ne započinje slanje dok je `out_ready` = 0, ne dolazi do gubitka početnog bajta paketa i kompletan paket se šalje tek kada se steknu uslovi (`out_ready` = 1). 
 
