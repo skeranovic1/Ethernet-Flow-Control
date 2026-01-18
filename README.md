@@ -318,7 +318,7 @@ Sa talasnog oblika se vidi da signal `out_ready` prelazi u logičku vrijednost '
 <p align="center">
   <img src="VHDL/tb4.png" width="900" height="900" >
 </p>
-div align="justify">
+<div align="justify">
 
 Ovaj testbench dokazuje da modul pravilno odlaže slanje paketa kada izlazni interfejs nije spreman od samog početka prenosa, bez gubitka podataka i bez narušavanja redoslijeda bajtova.
 </div>
