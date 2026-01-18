@@ -46,21 +46,21 @@ Modul koristi Avalon-ST interfejs sa ready/valid rukovanjem. Strana koja šalje 
 ### Opis signala modula
 <div align="justify">
 
-- `in_data` – podatak koji se prenosi u trenutnom ciklusu transfera Ethernet okvira na ulazu 
-- `in_valid` – signal koji indicira da su podaci prisutni na signalu `in_data` u trenutnom ciklusu transfera validni
-- `in_sop` – signal koji indicira početak prenosa Ethernet okvira na ulazu  
-- `in_eop` – signal koji indicira kraj prenosa Ethernet okvira na ulazu  
-- `in_ready` – signal koji indicira da je modul spreman za prijem ulaznih podataka u narednom ciklusu transfera 
+- `in_data` – ulazni bajt Ethernet okvira koji modul prima sa Avalon-ST interfejsa  
+- `in_valid` – označava da je bajt na `in_data` validan u tom ciklusu  
+- `in_sop` – označava početak Ethernet okvira na ulazu  
+- `in_eop` – označava kraj Ethernet okvira na ulazu  
+- `in_ready` – pokazuje da je modul spreman za prijem ulaznih podataka  
 
-- `out_data` – podatak koji se prenosi u trenutnom ciklusu transfera Ethernet okvira na izlazu 
-- `out_valid` – signal koji indicira da su podaci prisutni na signalu `out_data` u trenutnom ciklusu transfera validni 
-- `out_sop` – signal koji indicira početak prenosa Ethernet okvira na izlazu 
-- `out_eop` – signal koji indicira kraj prenosa Ethernet okvira na izlazu  
-- `out_ready` – signal koji indicira da je odredište spremno za prijem izlaznih podataka u narednom ciklusu transfera
+- `out_data` – izlazni bajt Ethernet PAUSE okvira koji modul generiše  
+- `out_valid` – označava da je bajt na `out_data` validan za slanje  
+- `out_sop` – označava početak PAUSE okvira na izlazu  
+- `out_eop` – označava kraj PAUSE okvira na izlazu  
+- `out_ready` – pokazuje da je prijemnik spreman da primi izlazne podatke
 
-- `pause` – upravljački signal za generisanje Ethernet PAUSE okvira  
-- `time` – vrijednost koja se koristi kao polje `pause_time` u Ethernet PAUSE okviru  
-- `is_paused` – statusni signal koji indicira da je prenos podataka trenutno pauziran usljed primljenog PAUSE okvira
+- `pause` – inicira generisanje Ethernet PAUSE okvira  
+- `time` – vrijednost koja se upisuje u polje `pause_time` i definiše trajanje pauze  
+- `is_paused` – označava da je modul u stanju pauze nakon prijema PAUSE okvira
 </div>
 
 ## Opis komunikacije
