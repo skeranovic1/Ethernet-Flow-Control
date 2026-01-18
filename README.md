@@ -17,7 +17,8 @@ Unutar MAC Control nalazi se polje MAC Control Opcode, koje određuje konkretnu 
 <br>
 
 <p align="center">
-  <img src="Images/frame.jpg" alt="Struktura PAUSE okvira">
+  <img src="Images/frame.jpg" alt="Struktura PAUSE okvira"><br>
+  <b>Slika 1: Struktura Ethernet PAUSE okvira sa označenim poljima.</b>
 </p>
 
 <div align="justify">
@@ -33,7 +34,8 @@ Komunikacija sa okruženjem ostvarena je korištenjem Avalon-ST interfejsa sa re
 ## Blok dijagram modula
 
 <p align="center">
-  <img src="Images/Blok_dijagram.jpg" alt="Blok dijagram modula">
+  <img src="Images/Blok_dijagram.jpg" alt="Blok dijagram modula"><br>
+  <b>Slika 2: Blok dijagram VHDL modula ethernet_flow_control.</b>
 </p>
 
 <div align="justify">
@@ -70,7 +72,8 @@ Sekvencijalni dijagram prikazuje razmjenu Ethernet PAUSE okvira između dvije st
 </div>
 <br>
 <p align="center">
-  <img src="Images/ulpm.jpg" alt="Opis rada modula">
+  <img src="Images/ulpm.jpg" alt="Opis rada modula"><br>
+  <b>Slika 3: Sekvencijalni dijagram razmjene PAUSE okvira između Tx i Rx strane.</b>
 </p>
 
 <div align="justify">
@@ -89,7 +92,8 @@ WaveDrom dijagram prikazuje kompletan proces generisanja, prenosa i detekcije Et
 </div>
 <br>
 <p align="center">
-  <img src="WaveDrom/waveform.png" alt="WaveDrom dijagram" width="1200" height="1200">
+  <img src="WaveDrom/waveform.png" alt="WaveDrom dijagram" width="1200" height="1200"><br>
+  <b>Slika 4: WaveDrom dijagram generisanja, prenosa i detekcije PAUSE okvira.</b>
 </p>
 
 <div align="justify">
@@ -118,7 +122,8 @@ Rad modula `ethernet_flow_control` zasnovan je na konačnom automatu stanja (FSM
 ### FSM - režim inicijatora pauze
 
 <p align="center">
-  <img src="FSM/fsmtx_novo.jpg" width="700" height="700">
+  <img src="FSM/fsmtx_novo.jpg" width="700" height="700"><br>
+  <b>Slika 5: FSM dijagram Tx strane – režim inicijatora pauze.</b>
 </p>
 
 <div align="justify">
@@ -139,7 +144,8 @@ FSM je dizajniran kao _Moore_-ov automat. FSM režima inicijatora pauze sadrži 
 ### FSM - režim izvršioca pauze
 
 <p align="center">
-  <img src="FSM/fsmrx_novo.jpg" width="700" height="700">
+  <img src="FSM/fsmrx_novo.jpg" width="700" height="700"><br>
+  <b>Slika 6: FSM dijagram Rx strane – režim izvršioca pauze.</b>
 </p>
 
 <div align="justify">
@@ -178,7 +184,8 @@ realno Ethernet flow control ponašanje.
 ### Compilation report
 
 <p align="center">
-  <img src="VHDL/Images/flowsummary.png" width="700" height="700" >
+  <img src="VHDL/Images/flowsummary.png" width="700" height="700"><br>
+  <b>Slika 7: Izvještaj o uspješnoj sintezi u Quartus Prime Lite okruženju.</b>
 </p>
 
 VHDL `ethernet_flow_control` modul je uspješno sintetiziran u Quartus Prime Lite razvojnog okruženja.
@@ -186,18 +193,21 @@ VHDL `ethernet_flow_control` modul je uspješno sintetiziran u Quartus Prime Lit
 ### FSM dijagrami VHDL modula 
 <div align="justify"> 
 U nastavku su prikazani FSM dijagrami predajne (Tx) i prijemne (Rx) strane modula,
-generisani direktno u Quartus Prime Lite FSM Viewer-u. Dijagrami u dokumentaciji se slažu sa očekivanim 
+generisani direktno u Quartus Prime Lite State Machine View-eru. Dijagrami u dokumentaciji se slažu sa očekivanim 
 stanjima i prijelazima definisanim u dizajnu. 
 </div>
 
 <br>
 <p align="center">
-  <img src="FSM/txfsm_quartus.png" width="700" height="700">
+  <img src="FSM/txfsm_quartus.png" width="700" height="700"><br>
+  <b>Slika 8: FSM dijagram Tx strane - Quartus State Machine Viewer.</b>
 </p>
 <br>
 <p align="center">
-  <img src="FSM/rxfsm_quartus.png" width="700" height="700" >
+  <img src="FSM/rxfsm_quartus.png" width="700" height="700"><br>
+  <b>Slika 9: FSM dijagram Rx strane - Quartus State Machine Viewer.</b>
 </p>
+
 
 ### RTL Viewer
 
@@ -208,7 +218,8 @@ Na RTL Viewer prikazu vide se svi ulazni i izlazni signali modula, kao i komplet
 
 <br>
 <p align="center">
-  <img src="VHDL/Images/rtl.png" width="700" height="700" >
+  <img src="VHDL/Images/rtl.png" width="700" height="700"><br>
+  <b>Slika 10: RTL prikaz strukture modula.</b>
 </p>
 
 ### ModelSim
@@ -233,8 +244,10 @@ U ModelSim okruženju izvršena je simulacija rada modula koristeći testbench. 
 
 <br>
 <p align="center">
-  <img src="VHDL/Images/transcript.png" width="500" height="500" >
+  <img src="VHDL/Images/transcript.png" width="500" height="500"><br>
+  <b>Slika 11: Transcript simulacije u ModelSim-u.</b>
 </p>
+
 <br>
 
 <div align="justify">
@@ -246,8 +259,10 @@ Tokom simulacije u ModelSim-u posmatrani su talasni oblici svih relevantnih sign
 
 <br>
 <p align="center">
-  <img src="VHDL/Images/modelsim.png" width="900" height="900" >
+  <img src="VHDL/Images/modelsim.png" width="900" height="900"><br>
+  <b>Slika 12: Talasni oblici osnovnog testbench-a.</b>
 </p>
+
 <br>
 
 <div align="justify">
@@ -257,11 +272,15 @@ Prvi prikaz daje kompletan pregled simulacije i omogućava uvid u cjelokupan tok
 <br>
 
 <p align="center">
-  <img src="VHDL/Images/prvidio.png" width="900" height="900" >
+  <img src="VHDL/Images/prvidio.png" width="900" height="900"><br>
+  <b>Slika 13: Uvećani prikaz početnog dijela prenosa PAUSE okvira.</b>
 </p>
+
 <p align="center">
-  <img src="VHDL/Images/drugidio.png" width="900" height="900" >
+  <img src="VHDL/Images/drugidio.png" width="900" height="900"><br>
+  <b>Slika 14: Prikaz trajanja pauze - 640 ns.</b>
 </p>
+
 
 <div align="justify">
   
@@ -277,11 +296,15 @@ Drugi testbench je skoro identičan osnovnom, ali se razlikuje po vrijednosti `p
 </div>
 <br>
 <p align="center">
-  <img src="VHDL/Images/tb0002.png" width="900" height="900" >
+  <img src="VHDL/Images/tb0002.png" width="900" height="900"><br>
+  <b>Slika 15: Testbench sa dužom pauzom.</b>
 </p>
+
 <p align="center">
-  <img src="VHDL/Images/tb00022.png" width="900" height="900" >
+  <img src="VHDL/Images/tb00022.png" width="900" height="900"><br>
+  <b>Slika 16: Prikaz trajanja pauze - 1280 ns.</b>
 </p>
+
 
 <div align="justify">
   
@@ -299,8 +322,10 @@ Dodatno, tokom perioda kada je `out_ready` = 0, signal `in_valid` ostaje u stanj
 
 <br>
 <p align="center">
-  <img src="VHDL/Images/tb_bp1.png" width="900" height="900" >
+  <img src="VHDL/Images/tb_bp1.png" width="900" height="900"><br>
+  <b>Slika 17: Testbench sa backpressure-om u sredini paketa.</b>
 </p>
+
 
 
 Ovaj testbench dokazuje da modul pravilno podržava _backpressure_ u toku aktivnog prenosa podataka.
@@ -317,8 +342,10 @@ Sa talasnog oblika se vidi da signal `out_ready` prelazi u logičku vrijednost '
 </div>
 <br>
 <p align="center">
-  <img src="VHDL/Images/tb4.png" width="900" height="900" >
+  <img src="VHDL/Images/tb4.png" width="900" height="900"><br>
+  <b>Slika 18: Testbench sa backpressure-om na početku paketa.</b>
 </p>
+
 <div align="justify">
 
 Ovaj testbench dokazuje da modul pravilno odlaže slanje paketa kada izlazni interfejs nije spreman od samog početka prenosa, bez gubitka podataka i bez narušavanja redoslijeda bajtova.
