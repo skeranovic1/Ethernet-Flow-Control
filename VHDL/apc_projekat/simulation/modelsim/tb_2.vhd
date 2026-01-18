@@ -1,0 +1,81 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+
+entity tb_2 is
+end tb_2;
+-- backpressure u sred paketa
+architecture sim of tb_2 is
+    signal clock     : std_logic := '0';
+    signal reset     : std_logic := '1';
+    signal pause     : std_logic := '0';
+    signal p_time    : std_logic_vector(15 downto 0) := x"0001";
+    signal is_paused : std_logic;
+
+    signal tx_data   : std_logic_vector(7 downto 0);
+    signal tx_valid  : std_logic;
+    signal tx_sop    : std_logic;
+    signal tx_eop    : std_logic;
+    signal tx_ready  : std_logic := '1';
+
+    signal rx_data   : std_logic_vector(7 downto 0);
+    signal rx_valid  : std_logic;
+    signal rx_sop    : std_logic;
+    signal rx_eop    : std_logic;
+    signal rx_ready  : std_logic;
+
+begin
+    
+    rx_data  <= tx_data;
+    rx_valid <= tx_valid and tx_ready; 
+    rx_sop   <= tx_sop and tx_ready;
+    rx_eop   <= tx_eop and tx_ready;
+
+    uut: entity work.ethernet_flow_control
+    port map (
+        clock => clock, 
+        reset => reset, 
+        pause => pause, 
+        p_time => p_time, 
+        is_paused => is_paused,
+        in_data => rx_data, 
+        in_valid => rx_valid, 
+        in_sop => rx_sop, 
+        in_eop => rx_eop, 
+        in_ready => rx_ready,
+        out_data => tx_data, 
+        out_valid => tx_valid, 
+        out_sop => tx_sop, 
+        out_eop => tx_eop, 
+        out_ready => tx_ready
+    );
+
+    clock <= not clock after 5 ns;
+
+    process
+    begin
+        reset <= '1';
+        wait for 20 ns; 
+        reset <= '0';
+        wait for 20 ns;
+
+        wait until rising_edge(clock);
+        pause <= '1';
+        p_time <= x"0002"; 
+        wait for 10 ns; 
+        pause <= '0';
+
+        wait until tx_valid = '1';
+        wait for 40 ns; 
+        
+        tx_ready <= '0'; 
+        wait for 60 ns;
+        tx_ready <= '1'; 
+
+        wait until is_paused = '1';
+        wait until is_paused = '0'; 
+        
+        wait for 100 ns;
+        assert false report "Uspjesno" severity failure;
+    end process;
+end sim;
