@@ -338,7 +338,7 @@ Ovaj testbench dokazuje da modul pravilno podržava _backpressure_ u toku aktivn
 
 U posljednjem testbenchu se simulira slučaj kada je signal `out_ready` = 0 tačno u trenutku kada modul želi započeti slanje paketa. Provjerava se da li modul ne započinje slanje dok je `out_ready` = 0, ne dolazi do gubitka početnog bajta paketa i kompletan paket se šalje tek kada se steknu uslovi (`out_ready` = 1). 
 
-Sa talasnog oblika se vidi da signal `out_ready` prelazi u logičku vrijednost '1' u 125 ns. Do tog trenutka ne dolazi do stvarnog prenosa podataka, signali `out_valid` i `in_valid` ostaju neaktivni, a FSM ostaje u stanju čekanja. Tek nakon što `out_ready` postane logička '1' započinje slanje paketa od prvog bajta, a Rx FSM prelazi u stanje obrade odredišne adrese.
+Sa talasnog oblika se vidi da signal `out_ready` prelazi u logičku vrijednost '1' u 125 ns. Do tog trenutka ne dolazi do stvarnog prenosa podataka, a FSM ostaje u stanju čekanja. Tek nakon što `out_ready` postane logička '1' započinje slanje paketa od prvog bajta, a Rx FSM prelazi u stanje obrade odredišne adrese.
 </div>
 <br>
 <p align="center">
