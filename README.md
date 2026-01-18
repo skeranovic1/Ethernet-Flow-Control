@@ -220,7 +220,7 @@ U projektu su definisana četiri različita testbench-a, od kojih svaki demonstr
 1. Osnovni testbench - bez _backpressure_ i `pause_time` = 0x0001
 2. Testbench sa dužom pauzom - `pause_time` = 0x0002
 3. Testbench sa _backpressure_ u sredini paketa
-<!--4. Testbench sa _backpressure_ na samom početku paketa-->
+4. Testbench sa _backpressure_ na samom početku paketa
 
 Cilj podjele jeste da se jasno pokaže ponašanje modula pri različitim vrijednostima pauze i otpornost modula na _backpressure_ u različitim fazama prenosa.
 </div>
@@ -292,7 +292,9 @@ U osnovnom testbench-u, gdje je `pause_time` = 0x0001, razlika između kursora i
 
 <div align="justify">
 
-U ovom testbenchu se uvodi _backpressure_, to jeste signal `out_ready` se privremeno postavlja na logičku vrijednost '0'. Cilj ovog scenarija jeste da se pokaže da modul zaustavlja slanje podataka kada je `out_ready` = 0, zadržava trenutni bajt i stanje FSM-a, nastavlja tačno od istog mjesta kada `out_ready` ponovo postane 1 i ne dolazi do gubitka ili preskakanja bajtova.
+U ovom testbenchu se uvodi _backpressure_, to jeste signal `out_ready` se privremeno postavlja na logičku vrijednost '0'. Cilj ovog scenarija jeste da se pokaže da modul zaustavlja slanje podataka kada je `out_ready` = 0, zadržava trenutni bajt i stanje FSM-a, nastavlja tačno od istog mjesta kada `out_ready` ponovo postane 1 i ne dolazi do gubitka ili preskakanja bajtova. 
+
+Dodatno, tokom perioda kada je `out_ready` = 0, signal `in_valid` ostaje u stanju logičke '0', jer se poštuje ready/valid hanshake princip i time se osigurava da nijedan bajt ne bude izgubljen niti pogrešno protumačen, čak i uslovima privremenog zastoja na izlaznom interfejsu.
 </div>
 
 <br>
@@ -305,21 +307,23 @@ Ovaj testbench dokazuje da modul pravilno podržava _backpressure_ u toku aktivn
 
 
 
-<!--
+
 ### Testbench sa _backpressure_ na samom početku paketa
 div align="justify">
 
-U posljednjem testbenchu se simulira slučaj kada je signal `out_ready` = 0 tačno u trenutku kada modul želi započeti slanje paketa. Provjerava se da li modul ne započinje slanje dok je `out_ready` = 0, ne dolazi do gubitka početnog bajta paketa i kompletan paket se šalje tek kada se steknu uslovi (`out_ready` = 1).
+U posljednjem testbenchu se simulira slučaj kada je signal `out_ready` = 0 tačno u trenutku kada modul želi započeti slanje paketa. Provjerava se da li modul ne započinje slanje dok je `out_ready` = 0, ne dolazi do gubitka početnog bajta paketa i kompletan paket se šalje tek kada se steknu uslovi (`out_ready` = 1). 
+
+Sa talasnog oblika se vidi da signal `out_ready` prelazi u logičku vrijednost '1' u 125 ns. Do tog trenutka ne dolazi do stvarnog prenosa podataka, signali `out_valid` i `out_valid` ostaju neaktivni, a FSM ostaje u stanju čekanja. Tek nakon što `out_ready` postane logička '1' započinje slanje paketa od prvog bajta, a Rx FSM prelazi u stanje obrade odredišne adrese.
 </div>
 <br>
 <p align="center">
-  <img src="VHDL/tb_bp1.png" width="900" height="900" >
+  <img src="VHDL/tb4.png" width="900" height="900" >
 </p>
 div align="justify">
 
-Ovaj testbench dokazuje da modul pravilno odlaže slanje paketa kada izlazni interfejs nije spreman od samog početka prenosa.
+Ovaj testbench dokazuje da modul pravilno odlaže slanje paketa kada izlazni interfejs nije spreman od samog početka prenosa, bez gubitka podataka i bez narušavanja redoslijeda bajtova.
 </div>
--->
+
 ## Zaključak
 
 <div align="justify">
