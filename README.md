@@ -215,7 +215,9 @@ Na RTL Viewer prikazu vide se svi ulazni i izlazni signali modula, kao i komplet
 
 <div align="justify">
 U projektu su definisana četiri različita testbench-a, od kojih svaki demonstrira specifičan scenarij rada modula:
+  
 <br>
+  
 1. Osnovni testbench - bez _backpressure_ i `pause_time` = 0x0001
 2. Testbench sa dužom pauzom - `pause_time` = 0x0002
 3. Testbench sa _backpressure_ u sredini paketa
