@@ -115,7 +115,7 @@ U ovom režimu, kada modul na svom `in_data` interfejsu detektuje dolazni kontro
 Rad modula `ethernet_flow_control` zasnovan je na konačnom automatu stanja (FSM) koji upravlja ponašanjem prenosa podataka u zavisnosti od prisustva PAUSE zahtjeva. 
 </div>
 
-### FSM - režim incijatora pauze
+### FSM - režim inicijatora pauze
 
 <p align="center">
   <img src="FSM/fsmtx_novo.jpg" width="500" height="500">
@@ -123,7 +123,7 @@ Rad modula `ethernet_flow_control` zasnovan je na konačnom automatu stanja (FSM
 
 <div align="justify">
 
-FSM je dizajniran kao _Moore_-ov automat. FSM režima incijatora pauze sadrži sljedeća stanja:
+FSM je dizajniran kao _Moore_-ov automat. FSM režima inicijatora pauze sadrži sljedeća stanja:
 
 1. **IDLE** - stanje mirovanja, 
 2. **SEND_DEST** - šalje MAC adresu (01:80:C2:00:00:01),
@@ -265,7 +265,7 @@ Prvi prikaz daje kompletan pregled simulacije i omogućava uvid u cjelokupan tok
 <div align="justify">
   
 Na gornjem prikazu se jasno vidi redoslijed bajtova koji čine PAUSE okvir, kao i prelazak Tx i Rx FSM-ova kroz odgovarajuća stanja tokom prenosa.  
-Donji prikaz fokusiran je na trajanje pauze nakon prijema PAUSE okvira. Za vrijednost `pause_time = 0x0001`, modul generiše pauzu u trajanju od jednog kvanta, što odgovara 512 bitskih intervala, odnosno 64 bajta ili 64 clock ciklusa. Pomoću kursora je očitano trajanje pauze 640 ns. Tokom tog perioda signal `is_paused` ostaje aktivan, a po isteku tog vremena automatski se vraća u neaktivno stanje.  Signal `out_ready` je postavljen na logičku vrijednost '1' i ne postoji _backpressure_.
+Donji prikaz fokusiran je na trajanje pauze nakon prijema PAUSE okvira. Za vrijednost `pause_time = 0x0001`, modul generiše pauzu u trajanju od jednog kvanta, što odgovara 512 bitskih intervala, odnosno 64 bajta ili 64 clock ciklusa. Pomoću kursora je očitano trajanje pauze od 640 ns, što je u skladu sa očekivanim trajanjem od 64 clock ciklusa, pri čemu jedan clock ciklus traje 10 ns. Tokom tog perioda signal `is_paused` ostaje aktivan, a po isteku tog vremena automatski se vraća u neaktivno stanje.  Signal `out_ready` je postavljen na logičku vrijednost '1' i ne postoji _backpressure_.
 </div>
 
 ### 2. Testbench sa dužom pauzom
@@ -284,7 +284,7 @@ Drugi testbench je skoro identičan osnovnom, ali se razlikuje po vrijednosti `p
 
 <div align="justify">
   
-U osnovnom testbench-u, gdje je `pause_time` = 0x0001, razlika između kursora iznosi 640 ns, što odgovara trajanju pauze od jednog kvanta, a u testbenchu-u sa dužom pauzom (`pause_time` = 0x0002), kursori pokazuju da signal `is_paused` ostaje aktivan 1280 ns, što je tačno dvostruko duže nego u osnovnom slučaju i potvrđuje da modul pravilno skalira trajanje pauze u zavisnosti od `pause_time`. 
+U osnovnom testbench-u, gdje je `pause_time` = 0x0001, razlika između kursora iznosi 640 ns, što odgovara trajanju pauze od jednog kvanta, a u testbench-u sa dužom pauzom (`pause_time` = 0x0002), kursori pokazuju da signal `is_paused` ostaje aktivan 1280 ns, što je tačno dvostruko duže nego u osnovnom slučaju i potvrđuje da modul pravilno skalira trajanje pauze u zavisnosti od `pause_time`. 
 </div>
 
 ### 3. Testbench sa _backpressure_ u sredini paketa
@@ -293,7 +293,7 @@ U osnovnom testbench-u, gdje je `pause_time` = 0x0001, razlika između kursora i
 
 U ovom testbenchu se uvodi _backpressure_, to jeste signal `out_ready` se privremeno postavlja na logičku vrijednost '0'. Cilj ovog scenarija jeste da se pokaže da modul zaustavlja slanje podataka kada je `out_ready` = 0, zadržava trenutni bajt i stanje FSM-a, nastavlja tačno od istog mjesta kada `out_ready` ponovo postane 1 i ne dolazi do gubitka ili preskakanja bajtova. 
 
-Dodatno, tokom perioda kada je `out_ready` = 0, signal `in_valid` ostaje u stanju logičke '0', jer se poštuje ready/valid hanshake princip i time se osigurava da nijedan bajt ne bude izgubljen niti pogrešno protumačen, čak i uslovima privremenog zastoja na izlaznom interfejsu.
+Dodatno, tokom perioda kada je `out_ready` = 0, signal `in_valid` ostaje u stanju logičke '0', jer se poštuje ready/valid handshake princip i time se osigurava da nijedan bajt ne bude izgubljen niti pogrešno protumačen, čak i uslovima privremenog zastoja na izlaznom interfejsu.
 </div>
 
 <br>
@@ -307,12 +307,12 @@ Ovaj testbench dokazuje da modul pravilno podržava _backpressure_ u toku aktivn
 
 
 
-### Testbench sa _backpressure_ na samom početku paketa
+### 4. Testbench sa _backpressure_ na samom početku paketa
 <div align="justify">
 
 U posljednjem testbenchu se simulira slučaj kada je signal `out_ready` = 0 tačno u trenutku kada modul želi započeti slanje paketa. Provjerava se da li modul ne započinje slanje dok je `out_ready` = 0, ne dolazi do gubitka početnog bajta paketa i kompletan paket se šalje tek kada se steknu uslovi (`out_ready` = 1). 
 
-Sa talasnog oblika se vidi da signal `out_ready` prelazi u logičku vrijednost '1' u 125 ns. Do tog trenutka ne dolazi do stvarnog prenosa podataka, signali `out_valid` i `out_valid` ostaju neaktivni, a FSM ostaje u stanju čekanja. Tek nakon što `out_ready` postane logička '1' započinje slanje paketa od prvog bajta, a Rx FSM prelazi u stanje obrade odredišne adrese.
+Sa talasnog oblika se vidi da signal `out_ready` prelazi u logičku vrijednost '1' u 125 ns. Do tog trenutka ne dolazi do stvarnog prenosa podataka, signali `out_valid` i `in_valid` ostaju neaktivni, a FSM ostaje u stanju čekanja. Tek nakon što `out_ready` postane logička '1' započinje slanje paketa od prvog bajta, a Rx FSM prelazi u stanje obrade odredišne adrese.
 </div>
 <br>
 <p align="center">
@@ -329,7 +329,7 @@ Ovaj testbench dokazuje da modul pravilno odlaže slanje paketa kada izlazni int
   
 U okviru ovog projekta realizovan je VHDL modul `ethernet_flow_control` koji implementira Ethernet Flow Control mehanizam definisan standardom IEEE 802.3x. Modul omogućava generisanje, prijem i obradu Ethernet PAUSE okvira, kao i kontrolu toka podataka putem signala `is_paused`, uz korištenje Avalon-ST interfejsa sa ready/valid rukovanjem.
 
-Funkcionalnost modula verifikovana je kroz blok dijagrame, FSM dijagrame, RTL prikaz i simulaciju u ModelSim okruženju. Dobijeni rezultati pokazuju da se modul ponaša u skladu sa specifikacijom: pravilno generiše PAUSE okvir, ispravno dekodira primljeni okvir i precizno realizuje trajanje pauze na osnovu polja `pause_time`.
+Funkcionalnost modula verifikovana je kroz blok dijagrame, FSM dijagrame, RTL prikaz i simulaciju u ModelSim okruženju. Dobijeni rezultati pokazuju da se modul ponaša u skladu sa specifikacijom: pravilno generiše PAUSE okvir, ispravno dekodira primljeni okvir i precizno realizuje trajanje pauze na osnovu polja `pause_time`. Kroz više različitih simulacija pokazano je da modul ispravno funkcioniše kada je izlazni interfejs spreman za prijem podataka, da pravilno skalira trajanje pauze za različite vrijednosti `pause_time`, da pouzdano zaustavlja i nastavlja prenos kada dođe do _backpressure_-a u sredini paketa, te da pravilno odlaže početak slanja kada _backpressure_ postoji već na samom početku prenosa, bez gubitka ili preskakanja podataka.
 
 U budućem razvoju modul se može unaprijediti tako da podržava promjenjive MAC adrese, rad sa više tokova podataka, praćenje broja poslatih i primljenih PAUSE okvira, te prilagođavanje za rad u većim i bržim mrežama.
 </div>
