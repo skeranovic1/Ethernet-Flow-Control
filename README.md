@@ -68,7 +68,7 @@ Modul koristi Avalon-ST interfejs sa ready/valid rukovanjem. Strana koja šalje 
 <div align="justify">
 Sekvencijalni dijagram prikazuje razmjenu Ethernet PAUSE okvira između dvije strane: Tx strane, koja inicira kontrolu toka, i Rx strane, koja reaguje na primljeni PAUSE okvir.
 </div>
-
+<br>
 <p align="center">
   <img src="Images/ulpm.jpg" alt="Opis rada modula">
 </p>
