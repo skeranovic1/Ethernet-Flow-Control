@@ -178,7 +178,7 @@ realno Ethernet flow control ponašanje.
 ### Compilation report
 
 <p align="center">
-  <img src="VHDL/flowsummary.png" width="700" height="700" >
+  <img src="VHDL/Images/flowsummary.png" width="700" height="700" >
 </p>
 
 VHDL `ethernet_flow_control` modul je uspješno sintetiziran u Quartus Prime Lite razvojnog okruženja.
@@ -208,16 +208,14 @@ Na RTL Viewer prikazu vide se svi ulazni i izlazni signali modula, kao i komplet
 
 <br>
 <p align="center">
-  <img src="VHDL/rtl.png" width="700" height="700" >
+  <img src="VHDL/Images/rtl.png" width="700" height="700" >
 </p>
 
 ### ModelSim
 
 <div align="justify">
 U projektu su definisana četiri različita testbench-a, od kojih svaki demonstrira specifičan scenarij rada modula:
-  
 <br>
-  
 1. Osnovni testbench - bez _backpressure_ i `pause_time` = 0x0001
 2. Testbench sa dužom pauzom - `pause_time` = 0x0002
 3. Testbench sa _backpressure_ u sredini paketa
@@ -234,7 +232,7 @@ U ModelSim okruženju izvršena je simulacija rada modula koristeći testbench. 
 
 <br>
 <p align="center">
-  <img src="VHDL/transcript.png" width="500" height="500" >
+  <img src="VHDL/Images/transcript.png" width="500" height="500" >
 </p>
 <br>
 
@@ -247,7 +245,7 @@ Tokom simulacije u ModelSim-u posmatrani su talasni oblici svih relevantnih sign
 
 <br>
 <p align="center">
-  <img src="VHDL/modelsim.png" width="900" height="900" >
+  <img src="VHDL/Images/modelsim.png" width="900" height="900" >
 </p>
 <br>
 
@@ -258,10 +256,10 @@ Prvi prikaz daje kompletan pregled simulacije i omogućava uvid u cjelokupan tok
 <br>
 
 <p align="center">
-  <img src="VHDL/prvidio.png" width="900" height="900" >
+  <img src="VHDL/Images/prvidio.png" width="900" height="900" >
 </p>
 <p align="center">
-  <img src="VHDL/drugidio.png" width="900" height="900" >
+  <img src="VHDL/Images/drugidio.png" width="900" height="900" >
 </p>
 
 <div align="justify">
@@ -278,10 +276,10 @@ Drugi testbench je skoro identičan osnovnom, ali se razlikuje po vrijednosti `p
 </div>
 <br>
 <p align="center">
-  <img src="VHDL/tb0002.png" width="900" height="900" >
+  <img src="VHDL/Images/tb0002.png" width="900" height="900" >
 </p>
 <p align="center">
-  <img src="VHDL/tb00022.png" width="900" height="900" >
+  <img src="VHDL/Images/tb00022.png" width="900" height="900" >
 </p>
 
 <div align="justify">
@@ -300,7 +298,7 @@ Dodatno, tokom perioda kada je `out_ready` = 0, signal `in_valid` ostaje u stanj
 
 <br>
 <p align="center">
-  <img src="VHDL/tb_bp1.png" width="900" height="900" >
+  <img src="VHDL/Images/tb_bp1.png" width="900" height="900" >
 </p>
 
 
@@ -318,7 +316,7 @@ Sa talasnog oblika se vidi da signal `out_ready` prelazi u logičku vrijednost '
 </div>
 <br>
 <p align="center">
-  <img src="VHDL/tb4.png" width="900" height="900" >
+  <img src="VHDL/Images/tb4.png" width="900" height="900" >
 </p>
 <div align="justify">
 
