@@ -14,7 +14,7 @@ Ethernet PAUSE okvir predstavlja MAC Control Ethernet okvir identifikovan EtherT
 Unutar MAC Control nalazi se polje MAC Control Opcode, koje određuje konkretnu kontrolnu funkciju. Opcode vrijednost 0x0001 označava PAUSE funkciju. Polje `pause_time` definiše trajanje pauze u jedinicama (kvantima) trajanja 512 bitskih intervala (max. 65.535 jedinica).
 </div>
 
----
+<br>
 
 <p align="center">
   <img src="Images/frame.jpg" alt="Struktura PAUSE okvira">
