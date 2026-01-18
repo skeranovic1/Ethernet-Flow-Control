@@ -105,7 +105,7 @@ U ovom režimu, modul reaguje na ulazni signal `pause`. Definiše se željeno tr
 ### 2. Režim izvršioca pauze (Rx)
 <div align="justify">
 
-U ovom režimu, kada modul na svom `in_data` interfejsu detektuje dolazni kontrolni okvir, on automatski preuzima ulogu prijemne stanice. Rx izvršava parsiranje zaglavlja i po potvrdi validnosti PAUSE okvira vrši ekstrakciju vrijednosti vremena pause `Pause Time`. Pomoću unutrašnjeg brojača skalira se primljena vrijednost prema standardu tako da jedan kvant pauze odgovara 64 bajta, odnosno 64 clock intervala. Tokom rada brojača, signal `is_paused` se održava na logičnoj '1' blokirajući dalje slanje podataka sve do isteka definisanog vremena.
+U ovom režimu, kada modul na svom `in_data` interfejsu detektuje dolazni kontrolni okvir, on automatski preuzima ulogu prijemne stanice. Rx izvršava parsiranje zaglavlja i po potvrdi validnosti PAUSE okvira vrši ekstrakciju vrijednosti vremena pause `pause_time`. Pomoću unutrašnjeg brojača skalira se primljena vrijednost prema standardu tako da jedan kvant pauze odgovara 64 bajta, odnosno 64 clock intervala. Tokom rada brojača, signal `is_paused` se održava na logičnoj '1' blokirajući dalje slanje podataka sve do isteka definisanog vremena.
 </div>
 
 ## FSM dijagram
@@ -118,7 +118,7 @@ Rad modula `ethernet_flow_control` zasnovan je na konačnom automatu stanja (FSM
 ### FSM - režim inicijatora pauze
 
 <p align="center">
-  <img src="FSM/fsmtx_novo.jpg" width="500" height="500">
+  <img src="FSM/fsmtx_novo.jpg" width="700" height="700">
 </p>
 
 <div align="justify">
@@ -139,7 +139,7 @@ FSM je dizajniran kao _Moore_-ov automat. FSM režima inicijatora pauze sadrži 
 ### FSM - režim izvršioca pauze
 
 <p align="center">
-  <img src="FSM/fsmrx_novo.jpg" width="500" height="500">
+  <img src="FSM/fsmrx_novo.jpg" width="700" height="700">
 </p>
 
 <div align="justify">
