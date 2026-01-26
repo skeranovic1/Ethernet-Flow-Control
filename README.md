@@ -366,3 +366,4 @@ U budućem razvoju modul se može unaprijediti tako da podržava promjenjive MAC
 - https://en.wikipedia.org/wiki/Ethernet_flow_control
 - https://www.intel.com/content/www/us/en/docs/programmable/683091/20-1/introduction-to-the-interface-specifications.html
 - Predavanja iz predmeta *Arhitekture paketskih čvorišta*, V. prof. dr Enia Kaljića, mr. dipl. ing.: https://c2.etf.unsa.ba/course/view.php?id=158
+- https://github.com/yol/ethernet_mac/blob/master/README.md
