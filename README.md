@@ -139,17 +139,6 @@ FSM je dizajniran kao _Moore_-ov automat. FSM režima inicijatora pauze sadrži 
 7. **SEND_PADDING** - generiše nule (0x00) kako bi se dostiglo minimalno 64 bajta paketa.
 </div>
 
-### Unutrašnji signali povezani sa FSM-om 
-<div align="justify">
-
-- `tx_counter` – interni brojač kojim FSM Tx strane prati redni broj bajta koji se trenutno šalje u okviru Ethernet PAUSE okvira i na osnovu kojeg se vrši prelazak između TX stanja
-
-- `rx_counter` – interni brojač kojim FSM Rx strane prati redni broj primljenog bajta Ethernet okvira radi identifikacije i dekodiranja PAUSE okvira
-
-- `captured_p_time` – interni registar u koji FSM Rx strane upisuje vrijednost polja `pause_time` iz primljenog PAUSE okvira
-
-- `paused_time_sig` – interni brojač koji se inicijalizuje vrijednošću `captured_p_time` i određuje trajanje stanja pauze tokom kojeg je signal is_paused aktivan
-</div>
 
 ---
 
@@ -191,6 +180,20 @@ okvira, prepoznaje strukturu pause poruke i pokreće interni tajmer.
 Kada se primi validan pause okvir, modul ulazi u stanje pauze i generiše signal
 `is_paused` tokom trajanja definisanog `pause time` poljem, čime se simulira
 realno Ethernet flow control ponašanje.
+</div>
+
+
+### Uloga internih signala u modulu
+
+<div align="justify">
+
+- `tx_counter` – interni brojač kojim FSM Tx strane prati redni broj bajta koji se trenutno šalje u okviru Ethernet PAUSE okvira i na osnovu kojeg se vrši prelazak između TX stanja
+
+- `rx_counter` – interni brojač kojim FSM Rx strane prati redni broj primljenog bajta Ethernet okvira radi identifikacije i dekodiranja PAUSE okvira
+
+- `captured_p_time` – interni registar u koji FSM Rx strane upisuje vrijednost polja `pause_time` iz primljenog PAUSE okvira
+
+- `paused_time_sig` – interni brojač koji se inicijalizuje vrijednošću `captured_p_time` i određuje trajanje stanja pauze tokom kojeg je signal is_paused aktivan
 </div>
 
 ### Compilation report
