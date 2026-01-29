@@ -23,7 +23,7 @@ Unutar MAC Control nalazi se polje MAC Control Opcode, koje određuje konkretnu 
 <div align="justify">
 
 U okviru ovog projekta bit će implementiran VHDL modul `ethernet_flow_control` koji podržava:
-- generisanje Ethernet PAUSE okvira na osnovu upravljačkih signala `pause` i `time`
+- generisanje Ethernet PAUSE okvira na osnovu upravljačkih signala `pause` i `p_time`
 - prijem i dekodiranje PAUSE okvira
 - kontrolu prenosa podataka putem signala `is_paused`
 
@@ -38,7 +38,7 @@ Komunikacija sa okruženjem ostvarena je korištenjem Avalon-ST interfejsa sa re
 
 <div align="justify">
 
-Modul `ethernet_flow_control` implementira Ethernet flow control mehanizam baziran na IEEE 802.3x PAUSE okviru. Modul prima upravljačke signale `pause` i `time`, kao i ulazni Avalon-ST interfejs (`in_data`, `in_valid`, `in_sop`, `in_eop`). Na izlazu generiše Avalon-ST interfejs (`out_data`,  `out_valid`, `out_sop`, `out_eop`) i statusni signal `is_paused`.
+Modul `ethernet_flow_control` implementira Ethernet flow control mehanizam baziran na IEEE 802.3x PAUSE okviru. Modul prima upravljačke signale `pause` i `p_time`, kao i ulazni Avalon-ST interfejs (`in_data`, `in_valid`, `in_sop`, `in_eop`). Na izlazu generiše Avalon-ST interfejs (`out_data`,  `out_valid`, `out_sop`, `out_eop`) i statusni signal `is_paused`.
 
 Modul koristi Avalon-ST interfejs sa ready/valid rukovanjem. Strana koja šalje podatke postavlja signal `valid` zajedno sa podacima i oznakama početka i kraja okvira (`sop`, `eop`). Strana koja prima podatke signalom `ready` označava svoju spremnost za prijem podataka. Prenos podataka se ostvaruje samo kada su signali `valid` i `ready` istovremeno aktivni.
 </div>
@@ -59,7 +59,7 @@ Modul koristi Avalon-ST interfejs sa ready/valid rukovanjem. Strana koja šalje 
 - `out_ready` – signal koji indicira da je odredište spremno za prijem izlaznih podataka u narednom ciklusu transfera
 
 - `pause` – upravljački signal za generisanje Ethernet PAUSE okvira  
-- `time` – vrijednost koja se koristi kao polje `pause_time` u Ethernet PAUSE okviru  
+- `p_time` – vrijednost koja se koristi kao polje `pause_time` u Ethernet PAUSE okviru  
 - `is_paused` – statusni signal koji indicira da je prenos podataka trenutno pauziran usljed primljenog PAUSE okvira
 </div>
 
@@ -99,7 +99,7 @@ Osnovna ideja Ethernet Flow Control mehanizma jeste da na osnovu zahtjeva generi
 ### 1. Režim inicijatora pauze (Tx)
 <div align="justify">
 
-U ovom režimu, modul reaguje na ulazni signal `pause`. Definiše se željeno trajanje pauze preko ulaznog signala `time`. Aktiviranjem signala `pause`, generiše se PAUSE okvir na `out_data` interfejsu. Modul formira zaglavlje (Destination Address, Source Address, MAC Ethertype 0x8808, MAC Opcode 0x0001) i definiše vrijednost pauze koja je stigla na ulaz.
+U ovom režimu, modul reaguje na ulazni signal `pause`. Definiše se željeno trajanje pauze preko ulaznog signala `p_time`. Aktiviranjem signala `pause`, generiše se PAUSE okvir na `out_data` interfejsu. Modul formira zaglavlje (Destination Address, Source Address, MAC Ethertype 0x8808, MAC Opcode 0x0001) i definiše vrijednost pauze koja je stigla na ulaz.
 </div>
 
 ### 2. Režim izvršioca pauze (Rx)
