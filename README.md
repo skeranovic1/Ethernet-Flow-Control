@@ -34,7 +34,7 @@ Komunikacija sa okruženjem ostvarena je korištenjem Avalon-ST interfejsa sa re
 ## Blok dijagram modula
 
 <p align="center">
-  <img src="Images/blok_dijagram.jpg" alt="Blok dijagram modula"><br>
+  <img src="Images/b_dijagram.jpg" alt="Blok dijagram modula"><br>
   <b>Slika 2: Blok dijagram VHDL modula ethernet_flow_control.</b>
 </p>
 
@@ -92,7 +92,7 @@ WaveDrom dijagram prikazuje kompletan proces generisanja, prenosa i detekcije Et
 </div>
 <br>
 <p align="center">
-  <img src="WaveDrom/waveform.png" alt="WaveDrom dijagram" width="1200" height="1200"><br>
+  <img src="WaveDrom/Waveform.png" alt="WaveDrom dijagram" width="1200" height="1200"><br>
   <b>Slika 4: WaveDrom dijagram generisanja, prenosa i detekcije PAUSE okvira.</b>
 </p>
 
@@ -140,6 +140,15 @@ FSM je dizajniran kao _Moore_-ov automat. FSM režima inicijatora pauze sadrži 
 </div>
 
 ---
+
+### Unutrašnji signali povezani sa FSM-om 
+
+<div align="justify">
+- `tx_counter` – interni brojač kojim FSM Tx strane prati redni broj bajta koji se trenutno šalje u okviru Ethernet PAUSE okvira i na osnovu kojeg se vrši prelazak između TX stanja
+- `rx_counter` – interni brojač kojim FSM Rx strane prati redni broj primljenog bajta Ethernet okvira radi identifikacije i dekodiranja PAUSE okvira
+- `captured_p_time` – interni registar u koji FSM Rx strane upisuje vrijednost polja pause_time iz primljenog PAUSE okvira
+- `paused_time_sig` – interni brojač koji se inicijalizuje vrijednošću captured_p_time i određuje trajanje stanja pauze tokom kojeg je signal is_paused aktivan
+</div>
 
 ### FSM - režim izvršioca pauze
 
