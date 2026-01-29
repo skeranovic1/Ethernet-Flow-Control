@@ -225,7 +225,7 @@ Na RTL Viewer prikazu vide se svi ulazni i izlazni signali modula, kao i komplet
 ### ModelSim
 
 <div align="justify">
-U projektu su definisana četiri različita testbench-a, od kojih svaki demonstrira specifičan scenarij rada modula:
+U projektu je definisano pet različitih testbench-a, od kojih svaki demonstrira specifičan scenarij rada modula:
 <br>
   
 1. Osnovni testbench - bez _backpressure_ i `pause_time` = 0x0001
@@ -318,8 +318,28 @@ U osnovnom testbench-u, gdje je `pause_time` = 0x0001, razlika između kursora i
 
 <div align="justify">
 
-Treći testbench implementira scenarij sa maksimalnom dozvoljenom vrijednošću polja `pause_time`, odnosno `pause_time` = 0xFFFF. Kao što je prethodno navedeno, jedan PAUSE kvant iznosi 512 bit intervala, odnosno 64 bajta. Za maksimalnu vrijednost 0xFFFF imamo 65535 kvanta, što odgovara 4.19 × 10⁶ bajta, odnosno 4.19 MB.
+Treći testbench implementira scenarij sa maksimalnom dozvoljenom vrijednošću polja `pause_time`, odnosno `pause_time` = 0xFFFF. Kao što je prethodno navedeno, jedan PAUSE kvant iznosi 512 bit intervala, odnosno 64 bajta. Za maksimalnu vrijednost 0xFFFF imamo 65535 kvanta, što odgovara 4 194 240 bajta, odnosno približno 4.19 MB.
 </div>
+<br>
+<p align="center">
+  <img src="VHDL/Images/ffff1.png" width="900" height="900"><br>
+  <b>Slika 17: Testbench sa najdužom pauzom.</b>
+</p>
+
+Na prikazanom talasnom obliku možemo očitati poslanu vrijednost `p_time` = 0xFFFF.
+
+<br>
+<p align="center">
+  <img src="VHDL/Images/ffff2.png" width="900" height="900"><br>
+  <b>Slika 18: Prikaz trajanja pauze - početak.</b>
+</p>
+
+<p align="center">
+  <img src="VHDL/Images/ffff3.png" width="900" height="900"><br>
+  <b>Slika 19: Prikaz trajanja pauze - kraj.</b>
+</p>
+
+Na talasnim oblicima iznad prikazan je početak i kraj trajanja pauze. Razlika između kursora iznosi približno 41 942 400 000 ps, odnosno 41 942 400 ns. Ova vrijednost odgovara teorijski očekivanom trajanju najduže pauze, ukupno trajanje pauze iznosi 65535 kvanta x 64 x 10 ns = 41 942 400 ns. 
 
 
 ### 4. Testbench sa _backpressure_ u sredini paketa
@@ -334,7 +354,7 @@ Dodatno, tokom perioda kada je `out_ready` = 0, signal `in_valid` ostaje u stanj
 <br>
 <p align="center">
   <img src="VHDL/Images/tb_bp1.png" width="900" height="900"><br>
-  <b>Slika 17: Testbench sa backpressure-om u sredini paketa.</b>
+  <b>Slika 20: Testbench sa backpressure-om u sredini paketa.</b>
 </p>
 
 
@@ -354,7 +374,7 @@ Sa talasnog oblika se vidi da signal `out_ready` prelazi u logičku vrijednost '
 <br>
 <p align="center">
   <img src="VHDL/Images/tb4.png" width="900" height="900"><br>
-  <b>Slika 18: Testbench sa backpressure-om na početku paketa.</b>
+  <b>Slika 21: Testbench sa backpressure-om na početku paketa.</b>
 </p>
 
 <div align="justify">
