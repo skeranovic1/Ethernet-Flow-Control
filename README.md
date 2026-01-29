@@ -230,8 +230,9 @@ U projektu su definisana četiri različita testbench-a, od kojih svaki demonstr
   
 1. Osnovni testbench - bez _backpressure_ i `pause_time` = 0x0001
 2. Testbench sa dužom pauzom - `pause_time` = 0x0002
-3. Testbench sa _backpressure_ u sredini paketa
-4. Testbench sa _backpressure_ na samom početku paketa
+3. Testbench sa najdužom pauzom - `pause_time` = 0xFFFF
+4. Testbench sa _backpressure_ u sredini paketa
+5. Testbench sa _backpressure_ na samom početku paketa
 
 Cilj podjele jeste da se jasno pokaže ponašanje modula pri različitim vrijednostima pauze i otpornost modula na _backpressure_ u različitim fazama prenosa.
 </div>
@@ -311,7 +312,17 @@ Drugi testbench je skoro identičan osnovnom, ali se razlikuje po vrijednosti `p
 U osnovnom testbench-u, gdje je `pause_time` = 0x0001, razlika između kursora iznosi 640 ns, što odgovara trajanju pauze od jednog kvanta, a u testbench-u sa dužom pauzom (`pause_time` = 0x0002), kursori pokazuju da signal `is_paused` ostaje aktivan 1280 ns, što je tačno dvostruko duže nego u osnovnom slučaju i potvrđuje da modul pravilno skalira trajanje pauze u zavisnosti od `pause_time`. 
 </div>
 
-### 3. Testbench sa _backpressure_ u sredini paketa
+
+
+### 3. Testbench sa najdužom pauzom
+
+<div align="justify">
+
+Treći testbench implementira scenarij sa maksimalnom dozvoljenom vrijednošću polja `pause_time`, odnosno `pause_time` = 0xFFFF. Kao što je prethodno navedeno, jedan PAUSE kvant iznosi 512 bit intervala, odnosno 64 bajta. Za maksimalnu vrijednost 0xFFFF imamo 65535 kvanta, što odgovara 4.19 × 10⁶ bajta, odnosno 4.19 MB.
+</div>
+
+
+### 4. Testbench sa _backpressure_ u sredini paketa
 
 <div align="justify">
 
@@ -333,7 +344,7 @@ Ovaj testbench dokazuje da modul pravilno podržava _backpressure_ u toku aktivn
 
 
 
-### 4. Testbench sa _backpressure_ na samom početku paketa
+### 5. Testbench sa _backpressure_ na samom početku paketa
 <div align="justify">
 
 U posljednjem testbenchu se simulira slučaj kada je signal `out_ready` = 0 tačno u trenutku kada modul želi započeti slanje paketa. Provjerava se da li modul ne započinje slanje dok je `out_ready` = 0, ne dolazi do gubitka početnog bajta paketa i kompletan paket se šalje tek kada se steknu uslovi (`out_ready` = 1). 
