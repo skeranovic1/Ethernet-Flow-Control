@@ -351,7 +351,7 @@ Na prikazanom talasnom obliku možemo očitati poslanu vrijednost `p_time` = 0xF
   <b>Slika 19: Prikaz trajanja pauze - kraj.</b>
 </p>
 
-Na talasnim oblicima iznad prikazan je početak i kraj trajanja pauze. Razlika između kursora iznosi približno 41 942 400 000 ps, odnosno 41 942 400 ns. Ova vrijednost odgovara teorijski očekivanom trajanju najduže pauze, ukupno trajanje pauze iznosi 65535 kvanta x 64 x 10 ns = 41 942 400 ns. 
+Na talasnim oblicima iznad prikazan je početak i kraj trajanja pauze. Razlika između kursora iznosi 41 942 400 000 ps, odnosno 41 942 400 ns. Ova vrijednost odgovara teorijski očekivanom trajanju najduže pauze, ukupno trajanje pauze iznosi 4 194 240 bajta x 10 ns (trajanje clock intervala) = 41 942 400 ns. 
 
 
 ### 4. Testbench sa _backpressure_ u sredini paketa
