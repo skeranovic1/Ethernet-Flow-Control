@@ -92,7 +92,7 @@ WaveDrom dijagram prikazuje kompletan proces generisanja, prenosa i detekcije Et
 </div>
 <br>
 <p align="center">
-  <img src="WaveDrom/Waveform.png" alt="WaveDrom dijagram" width="1200" height="1200"><br>
+  <img src="WaveDrom/waveform.png" alt="WaveDrom dijagram" width="1200" height="1200"><br>
   <b>Slika 4: WaveDrom dijagram generisanja, prenosa i detekcije PAUSE okvira.</b>
 </p>
 
