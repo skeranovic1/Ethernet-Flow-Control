@@ -146,9 +146,9 @@ FSM je dizajniran kao _Moore_-ov automat. FSM režima inicijatora pauze sadrži 
 
 - `rx_counter` – interni brojač kojim FSM Rx strane prati redni broj primljenog bajta Ethernet okvira radi identifikacije i dekodiranja PAUSE okvira
 
-- `captured_p_time` – interni registar u koji FSM Rx strane upisuje vrijednost polja pause_time iz primljenog PAUSE okvira
+- `captured_p_time` – interni registar u koji FSM Rx strane upisuje vrijednost polja `pause_time` iz primljenog PAUSE okvira
 
-- `paused_time_sig` – interni brojač koji se inicijalizuje vrijednošću captured_p_time i određuje trajanje stanja pauze tokom kojeg je signal is_paused aktivan
+- `paused_time_sig` – interni brojač koji se inicijalizuje vrijednošću `captured_p_time` i određuje trajanje stanja pauze tokom kojeg je signal is_paused aktivan
 </div>
 
 ---
