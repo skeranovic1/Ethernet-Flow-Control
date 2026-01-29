@@ -270,7 +270,7 @@ U ModelSim okruženju izvršena je simulacija rada modula koristeći testbench. 
   
 ### 1. Osnovni testbench
  
-Tokom simulacije u ModelSim-u posmatrani su talasni oblici svih relevantnih signala modula. Dobijeni waveform prikaz je u skladu sa WaveDrom dijagramom prethodno prikazanim u ovom dokumentu. Redoslijed generisanja PAUSE okvira, prijema okvira i aktivacije signala `is_paused` odgovara očekivanom ponašanju definisanom u specifikaciji modula. 
+Tokom simulacije u ModelSim-u posmatrani su talasni oblici svih relevantnih signala modula. Dobijeni waveform prikaz je u skladu sa Waveform dijagramom prethodno prikazanim u ovom dokumentu. Redoslijed generisanja PAUSE okvira, prijema okvira i aktivacije signala `is_paused` odgovara očekivanom ponašanju definisanom u specifikaciji modula. 
 </div>
 
 <br>
