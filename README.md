@@ -34,7 +34,7 @@ Komunikacija sa okruženjem ostvarena je korištenjem Avalon-ST interfejsa sa re
 ## Blok dijagram modula
 
 <p align="center">
-  <img src="Images/Blok_dijagram.jpg" alt="Blok dijagram modula"><br>
+  <img src="Images/blok_dijagram.jpg" alt="Blok dijagram modula"><br>
   <b>Slika 2: Blok dijagram VHDL modula ethernet_flow_control.</b>
 </p>
 
