@@ -1,0 +1,213 @@
+# Reading C:/intelFPGA_lite/19.1/modelsim_ase/tcl/vsim/pref.tcl
+# do ethernet_flow_control_run_msim_rtl_vhdl.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work rtl_work 
+# Copying C:/intelFPGA_lite/19.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vcom -93 -work work {C:/Users/Korisnik/Desktop/apc_projekat/ethernet_flow_control.vhd}
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:19:45 on Jan 30,2026
+# vcom -reportprogress 300 -93 -work work C:/Users/Korisnik/Desktop/apc_projekat/ethernet_flow_control.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity ethernet_flow_control
+# -- Compiling architecture arch of ethernet_flow_control
+# End time: 01:19:46 on Jan 30,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# 
+vcom -reportprogress 300 -work work C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_3.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:19:49 on Jan 30,2026
+# vcom -reportprogress 300 -work work C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_3.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity tb_3
+# -- Compiling architecture sim of tb_3
+# -- Loading entity ethernet_flow_control
+# End time: 01:19:49 on Jan 30,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim -gui -l msim_transcript work.tb_3
+# vsim -gui -l msim_transcript work.tb_3 
+# Start time: 01:19:57 on Jan 30,2026
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.tb_3(sim)
+# Loading work.ethernet_flow_control(arch)
+add wave -position insertpoint  \
+sim:/tb_3/clock \
+sim:/tb_3/reset \
+sim:/tb_3/pause \
+sim:/tb_3/p_time \
+sim:/tb_3/is_paused \
+sim:/tb_3/tx_data \
+sim:/tb_3/tx_valid \
+sim:/tb_3/tx_sop \
+sim:/tb_3/tx_eop \
+sim:/tb_3/tx_ready \
+sim:/tb_3/rx_data \
+sim:/tb_3/rx_valid \
+sim:/tb_3/rx_sop \
+sim:/tb_3/rx_eop \
+sim:/tb_3/rx_ready
+add wave -position insertpoint  \
+sim:/tb_3/uut/tx_state \
+sim:/tb_3/uut/rx_state
+run
+# ** Failure: Uspjesno
+#    Time: 2085 ns  Iteration: 0  Process: /tb_3/line__59 File: C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_3.vhd
+# Break in Process line__59 at C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_3.vhd line 77
+vcom -reportprogress 300 -work work C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_max.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:23:47 on Jan 30,2026
+# vcom -reportprogress 300 -work work C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_max.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity tb_max
+# -- Compiling architecture sim of tb_max
+# -- Loading entity ethernet_flow_control
+# End time: 01:23:47 on Jan 30,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim -gui -l msim_transcript work.tb_max
+# End time: 01:23:55 on Jan 30,2026, Elapsed time: 0:03:58
+# Errors: 0, Warnings: 0
+# vsim -gui -l msim_transcript work.tb_max 
+# Start time: 01:23:55 on Jan 30,2026
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.tb_max(sim)
+# Loading work.ethernet_flow_control(arch)
+add wave -position insertpoint  \
+sim:/tb_max/clock \
+sim:/tb_max/reset \
+sim:/tb_max/pause \
+sim:/tb_max/p_time \
+sim:/tb_max/is_paused \
+sim:/tb_max/tx_data \
+sim:/tb_max/tx_valid \
+sim:/tb_max/tx_sop \
+sim:/tb_max/tx_eop \
+sim:/tb_max/tx_ready \
+sim:/tb_max/rx_data \
+sim:/tb_max/rx_valid \
+sim:/tb_max/rx_sop \
+sim:/tb_max/rx_eop \
+sim:/tb_max/rx_ready
+add wave -position insertpoint  \
+sim:/tb_max/uut/tx_state \
+sim:/tb_max/uut/rx_state
+run
+# ** Failure: Uspjesno
+#    Time: 41943205 ns  Iteration: 0  Process: /tb_max/line__59 File: C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_max.vhd
+# Break in Process line__59 at C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_max.vhd line 77
+vcom -reportprogress 300 -work work C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_2.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:27:27 on Jan 30,2026
+# vcom -reportprogress 300 -work work C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_2.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity tb_2
+# -- Compiling architecture sim of tb_2
+# -- Loading entity ethernet_flow_control
+# End time: 01:27:27 on Jan 30,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim -gui -l msim_transcript work.tb_2
+# End time: 01:27:36 on Jan 30,2026, Elapsed time: 0:03:41
+# Errors: 0, Warnings: 0
+# vsim -gui -l msim_transcript work.tb_2 
+# Start time: 01:27:36 on Jan 30,2026
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.tb_2(sim)
+# Loading work.ethernet_flow_control(arch)
+add wave -position insertpoint  \
+sim:/tb_2/clock \
+sim:/tb_2/reset \
+sim:/tb_2/pause \
+sim:/tb_2/p_time \
+sim:/tb_2/is_paused \
+sim:/tb_2/tx_data \
+sim:/tb_2/tx_valid \
+sim:/tb_2/tx_sop \
+sim:/tb_2/tx_eop \
+sim:/tb_2/tx_ready \
+sim:/tb_2/rx_data \
+sim:/tb_2/rx_valid \
+sim:/tb_2/rx_sop \
+sim:/tb_2/rx_eop \
+sim:/tb_2/rx_ready
+add wave -position insertpoint  \
+sim:/tb_2/uut/tx_state \
+sim:/tb_2/uut/rx_state
+run
+# ** Failure: Uspjesno
+#    Time: 2145 ns  Iteration: 0  Process: /tb_2/line__56 File: C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_2.vhd
+# Break in Process line__56 at C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_2.vhd line 79
+vcom -reportprogress 300 -work work C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_4.vhd
+# Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:29:54 on Jan 30,2026
+# vcom -reportprogress 300 -work work C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_4.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package NUMERIC_STD
+# -- Compiling entity tb_4
+# -- Compiling architecture sim of tb_4
+# -- Loading entity ethernet_flow_control
+# End time: 01:29:54 on Jan 30,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim -gui -l msim_transcript work.tb_4
+# End time: 01:30:02 on Jan 30,2026, Elapsed time: 0:02:26
+# Errors: 0, Warnings: 0
+# vsim -gui -l msim_transcript work.tb_4 
+# Start time: 01:30:02 on Jan 30,2026
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.tb_4(sim)
+# Loading work.ethernet_flow_control(arch)
+add wave -position insertpoint  \
+sim:/tb_4/clock \
+sim:/tb_4/reset \
+sim:/tb_4/pause \
+sim:/tb_4/p_time \
+sim:/tb_4/is_paused \
+sim:/tb_4/tx_data \
+sim:/tb_4/tx_valid \
+sim:/tb_4/tx_sop \
+sim:/tb_4/tx_eop \
+sim:/tb_4/tx_ready \
+sim:/tb_4/rx_data \
+sim:/tb_4/rx_valid \
+sim:/tb_4/rx_sop \
+sim:/tb_4/rx_eop \
+sim:/tb_4/rx_ready
+add wave -position insertpoint  \
+sim:/tb_4/uut/tx_state \
+sim:/tb_4/uut/rx_state
+run
+# ** Failure: Uspjesno
+#    Time: 2155 ns  Iteration: 0  Process: /tb_4/line__58 File: C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_4.vhd
+# Break in Process line__58 at C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_4.vhd line 81
+# End time: 01:41:40 on Jan 30,2026, Elapsed time: 0:11:38
+# Errors: 0, Warnings: 0

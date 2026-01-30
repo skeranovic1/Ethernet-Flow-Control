@@ -1,0 +1,219 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim
+Eethernet_flow_control
+Z1 w1769731791
+Z2 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z5 8C:/Users/Korisnik/Desktop/apc_projekat/ethernet_flow_control.vhd
+Z6 FC:/Users/Korisnik/Desktop/apc_projekat/ethernet_flow_control.vhd
+l0
+L5
+VT4^c:_5_WmFMjiW0bgA5;2
+!s100 eY9c]?]9^z5nAonMhzmBM2
+Z7 OV;C;10.5b;63
+31
+Z8 !s110 1769732386
+!i10b 1
+Z9 !s108 1769732385.000000
+Z10 !s90 -reportprogress|300|-93|-work|work|C:/Users/Korisnik/Desktop/apc_projekat/ethernet_flow_control.vhd|
+Z11 !s107 C:/Users/Korisnik/Desktop/apc_projekat/ethernet_flow_control.vhd|
+!i113 1
+Z12 o-93 -work work
+Z13 tExplicit 1 CvgOpt 0
+Aarch
+R2
+R3
+R4
+Z14 DEx4 work 21 ethernet_flow_control 0 22 T4^c:_5_WmFMjiW0bgA5;2
+l43
+L25
+VOF@Fa@I2HWd>E9GK4^A7C0
+!s100 Vh=ol2^LR8:3Y=n>[gR8Y3
+R7
+31
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Etb_2
+Z15 w1768737690
+R2
+R3
+R4
+R0
+Z16 8C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_2.vhd
+Z17 FC:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_2.vhd
+l0
+L5
+VjfoTI3X0>gA9SOLOPGejH2
+!s100 7Q:HWcI86S?bMWQh0Wm1A0
+R7
+32
+Z18 !s110 1769732847
+!i10b 1
+Z19 !s108 1769732847.000000
+Z20 !s90 -reportprogress|300|-work|work|C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_2.vhd|
+Z21 !s107 C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_2.vhd|
+!i113 1
+Z22 o-work work
+R13
+Asim
+R14
+R2
+R3
+R4
+DEx4 work 4 tb_2 0 22 jfoTI3X0>gA9SOLOPGejH2
+l27
+L8
+VX<CBOfTDmA>aW=4YdSefG1
+!s100 <]Sm:8I>Ub0VbJYUEhbG01
+R7
+32
+R18
+!i10b 1
+R19
+R20
+R21
+!i113 1
+R22
+R13
+Etb_3
+Z23 w1768671171
+R2
+R3
+R4
+R0
+Z24 8C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_3.vhd
+Z25 FC:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_3.vhd
+l0
+L5
+VW=]@801d7Tf?Qf3>l:oj32
+!s100 ;N;HYkXY6LCKlzonZSn[g1
+R7
+32
+Z26 !s110 1769732389
+!i10b 1
+Z27 !s108 1769732389.000000
+Z28 !s90 -reportprogress|300|-work|work|C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_3.vhd|
+Z29 !s107 C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_3.vhd|
+!i113 1
+R22
+R13
+Asim
+R14
+R2
+R3
+R4
+DEx4 work 4 tb_3 0 22 W=]@801d7Tf?Qf3>l:oj32
+l29
+L8
+Vgcl_mS:fc[RhT68g0D?3l3
+!s100 M@_`>9ll_4S5DV<8I<:Y03
+R7
+32
+R26
+!i10b 1
+R27
+R28
+R29
+!i113 1
+R22
+R13
+Etb_4
+Z30 w1768738655
+R2
+R3
+R4
+R0
+Z31 8C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_4.vhd
+Z32 FC:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_4.vhd
+l0
+L5
+Vl0HhJ63VEcVXY9WDebeCC2
+!s100 AYI<B=MHlc6QR@cz34F;W3
+R7
+32
+Z33 !s110 1769732994
+!i10b 1
+Z34 !s108 1769732994.000000
+Z35 !s90 -reportprogress|300|-work|work|C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_4.vhd|
+Z36 !s107 C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_4.vhd|
+!i113 1
+R22
+R13
+Asim
+R14
+R2
+R3
+R4
+DEx4 work 4 tb_4 0 22 l0HhJ63VEcVXY9WDebeCC2
+l29
+L8
+V82SX?l5a1;FiYBgSSTWIP3
+!s100 @iKibO:g4LDmPM7;d_j912
+R7
+32
+R33
+!i10b 1
+R34
+R35
+R36
+!i113 1
+R22
+R13
+Etb_max
+Z37 w1769680339
+R2
+R3
+R4
+R0
+Z38 8C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_max.vhd
+Z39 FC:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_max.vhd
+l0
+L5
+VG72IJ[V9U@D9;:oNi<`733
+!s100 FJ]]AYJQ_>R0?VV;Lglc;3
+R7
+32
+Z40 !s110 1769732627
+!i10b 1
+Z41 !s108 1769732627.000000
+Z42 !s90 -reportprogress|300|-work|work|C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_max.vhd|
+Z43 !s107 C:/Users/Korisnik/Desktop/apc_projekat/simulation/modelsim/tb_max.vhd|
+!i113 1
+R22
+R13
+Asim
+R14
+R2
+R3
+R4
+DEx4 work 6 tb_max 0 22 G72IJ[V9U@D9;:oNi<`733
+l29
+L8
+VFnSMW]o=;7l_kJDTa5]QR0
+!s100 KTLL48aAUU1gGDHX>OR@W0
+R7
+32
+R40
+!i10b 1
+R41
+R42
+R43
+!i113 1
+R22
+R13
