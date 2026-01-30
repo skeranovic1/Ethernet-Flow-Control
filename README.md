@@ -390,7 +390,7 @@ Sa talasnog oblika se vidi da signal `out_ready` prelazi u logičku vrijednost '
 </div>
 <br>
 <p align="center">
-  <img src="VHDL/Images/tb4.png" width="900" height="900"><br>
+  <img src="VHDL/Images/tb_4.png" width="900" height="900"><br>
   <b>Slika 21: Testbench sa backpressure-om na početku paketa.</b>
 </p>
 
